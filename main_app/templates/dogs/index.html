@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<h1>New Best Friend</h1>
+
+{% block content %}
+    {% for dog in dogs %}
+    <div>
+        <div>
+            <ul>
+                <li>{{dog.name}}</li>
+                <li>{{dog.breed}}</li>
+                <li>{{dog.location}}</li>
+                <li>{{dog.gender}}</li>
+                <li>{{dog.provider}}</li>
+                <li>{{dog.neutered}}</li>
+                <li>{{dog.age}}</li>
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}
