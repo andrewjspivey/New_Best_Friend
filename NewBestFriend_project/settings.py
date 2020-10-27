@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'NewBestFriend_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dog_db',
+        'NAME': 'dogs',
     }
 }
 
