@@ -19,11 +19,11 @@ class Provider(models.Model):
     def __str__(self):
         return self.name
 
-@ receiver(post_save, sender=User)
+""" @ receiver(post_save, sender=User)
 def provider_signal(sender, instance, created, **kwargs):
     if created:
         Provider.objects.create(user=instance)
-    instance.provider.save()
+    instance.provider.save() """
 
 
 class Dog(models.Model):

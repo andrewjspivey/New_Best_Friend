@@ -1,0 +1,20 @@
+{% extends '../base.html' %}
+
+
+<h1>New Best Friend</h1>
+
+<h3>{{ provider.name }}</h3>
+
+{% block content %}
+    <div>
+        <ul>
+            <li>{{provider.location}}</li>
+            <li>{{provider.description}}</li>
+            <li>{{provider.website}}</li>
+            <li>{{provider.phone}}</li>
+            <li>{{provider.adoptionProcess}}</li>
+        </ul>
+    </div>
+
+
+{% endblock %}
