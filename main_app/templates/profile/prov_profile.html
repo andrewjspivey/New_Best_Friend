@@ -15,6 +15,19 @@
             <li>{{provider.adoptionProcess}}</li>
         </ul>
     </div>
+    <div>
+        <ul>
+            {% for dog in dogs %}
+            {% if dog.provider == provider %}
+                <li>{{ dog.name }}</li>
+                <li>{{ dog.breed }}</li>
+                <li>{{ dog.provider.shelterName }}</li>
+                <li>{{ dog.image }}</li>
+                <li>{{ dog.story }}</li>
+            {% endif%}
+            {% endfor %}
+        </ul>
+    </div>
 
 
 {% endblock %}

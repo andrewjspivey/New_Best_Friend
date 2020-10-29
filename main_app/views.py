@@ -19,8 +19,10 @@ def dogs_index(request):
 
 def prov_profile(request, provider_id):
     provider = Provider.objects.get(id=provider_id)
+    dogs = Dog.objects.all()
     context = {
         'provider': provider,
+        'dogs': dogs,
     }
     return render(request, 'profile/prov_profile.html', context)
 
