@@ -27,7 +27,20 @@ class ProviderRegisterForm(UserCreationForm):
             user.save()
         return user
 
+class RegUserRegisterForm(UserCreationForm):
+    image = forms.CharField(max_length=200)
 
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username',
+                'email', 'password1', 'password2', 'image']
+
+    def save(self, commit=True):
+        user = super(RegUserRegisterForm, self).save(commit=False)
+        user.is_regUser = True
+        if commit:
+            user.save()
+        return user
 
 
 class Dog_Form(ModelForm):

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Dog, Provider, User, RegUser
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ProviderRegisterForm, Dog_Form
+from .forms import ProviderRegisterForm, RegUserRegisterForm, Dog_Form
 # Create your views here.
 
 
@@ -31,6 +31,14 @@ def provider_registration(request):
     }
     return render(request, 'registration/register_provider.html',  context)
 
+
+def regUser_registration(request):
+    form = RegUserRegisterForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'registration/register_regUser.html',  context)
+
 def register_provider(request):
     if request.method == 'POST':
         form = ProviderRegisterForm(request.POST)
@@ -48,6 +56,21 @@ def register_provider(request):
             return redirect("home") 
         else:
             form = ProviderRegisterForm()
+
+        return render(request, 'home', {'form': form})
+
+
+def register_regUser(request):
+    if request.method == 'POST':
+        form = RegUserRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.is_regUser = True
+            user.reguser.image = form.cleaned_data.get('image')
+            user.save()
+            return redirect("home") 
+        else:
+            form = RegUserRegisterForm()
 
         return render(request, 'home', {'form': form})
         

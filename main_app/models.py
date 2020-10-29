@@ -13,6 +13,7 @@ class User(AbstractUser):
     is_regUser = models.BooleanField(default=False)
 
 
+
 class Provider(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     user.is_provider = True
@@ -29,8 +30,10 @@ class Provider(models.Model):
 
 
 class RegUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     user.is_regUser = True
+    image = models.CharField(max_length=200, null=True)
+    
 
     def __str__(self):
         return self.user.username
@@ -49,7 +52,7 @@ def save_user_profile(sender, instance, **kwargs):
     if instance.is_provider:
         instance.provider.save()
     elif instance.is_regUser:
-        instance.regUser.save()
+        instance.reguser.save()
 
 
 class Dog(models.Model):
