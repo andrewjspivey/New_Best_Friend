@@ -1,14 +1,22 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
+from datetime import datetime
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
 # Create your models here.
 
 
+class User(AbstractUser):
+    is_provider = models.BooleanField(default=False)
+    is_regUser = models.BooleanField(default=False)
+
 
 class Provider(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    name = models.CharField(max_length=75)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user.is_provider = True
+    shelterName = models.CharField(max_length=75)
     location = models.CharField(max_length=75)
     description = models.TextField(max_length=500, null=True)
     phone = models.CharField(max_length=15, null=True)
@@ -17,13 +25,31 @@ class Provider(models.Model):
     adoptionProcess = models.TextField(max_length=500, null=True)
 
     def __str__(self):
-        return self.name
+        return self.shelterName
 
-""" @ receiver(post_save, sender=User)
-def provider_signal(sender, instance, created, **kwargs):
+
+class RegUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user.is_regUser = True
+
+    def __str__(self):
+        return self.user.username
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Provider.objects.create(user=instance)
-    instance.provider.save() """
+        if instance.is_provider:
+            Provider.objects.get_or_create(user=instance)
+        elif instance.is_regUser:
+            RegUser.objects.get_or_create(user=instance) 
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    if instance.is_provider:
+        instance.provider.save()
+    elif instance.is_regUser:
+        instance.regUser.save()
 
 
 class Dog(models.Model):
@@ -45,6 +71,7 @@ class Dog(models.Model):
     image = models.CharField(max_length=200, default="photo.jpg")
     story = models.TextField(max_length=700, default="story")
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE, default="none")
+
 
     def __str__(self):
         return self.name
