@@ -47,6 +47,6 @@ class Dog_Form(ModelForm):
     class Meta:
         model = Dog
         fields = ["name", "location", "breed", "age", "gender", "neutured",
-            "image", "story", "provider"]
+            "image", "story"]
 
 

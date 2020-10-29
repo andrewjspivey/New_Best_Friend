@@ -15,7 +15,7 @@ class User(AbstractUser):
 
 
 class Provider(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     user.is_provider = True
     shelterName = models.CharField(max_length=75)
     location = models.CharField(max_length=75)
@@ -30,7 +30,7 @@ class Provider(models.Model):
 
 
 class RegUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     user.is_regUser = True
     image = models.CharField(max_length=200, null=True)
     
@@ -57,7 +57,7 @@ def save_user_profile(sender, instance, **kwargs):
 
 class Dog(models.Model):
     name = models.CharField(max_length=50)
-    location= models.CharField(max_length=50, null=True)
+    location= models.CharField(max_length=50)
     breed = models.CharField(max_length=50)
     age = models.CharField(max_length=50)
     DOG_GENDER = (
@@ -73,7 +73,7 @@ class Dog(models.Model):
     neutured = models.CharField(max_length=1, choices=IS_NEUTURED, null=True)
     image = models.CharField(max_length=200, default="photo.jpg")
     story = models.TextField(max_length=700, default="story")
-    provider = models.ForeignKey(Provider, on_delete=models.CASCADE, default="none")
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
 
 
     def __str__(self):

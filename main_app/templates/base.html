@@ -10,7 +10,7 @@
 <body>
     <h1>New Best Friend</h1>
     <ul>
-        <li><a href="{% url 'prov_registration' %}">Register</a></li>
+        <li><a href="{% url 'registration' %}">Register</a></li>
         <li><a href="{% url 'dogs' %}">View Dogs</a></li>
         {% if user.is_authenticated %}
           <li><a href="{% url 'logout' %}">Log Out</a></li>

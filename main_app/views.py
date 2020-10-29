@@ -24,6 +24,9 @@ def prov_profile(request, provider_id):
     }
     return render(request, 'profile/prov_profile.html', context)
 
+def registration_type(request):
+    return render(request, 'registration/register.html')
+
 def provider_registration(request):
     form = ProviderRegisterForm()
     context = {
@@ -73,4 +76,30 @@ def register_regUser(request):
             form = RegUserRegisterForm()
 
         return render(request, 'home', {'form': form})
+
+
+def add_dog(request, provider_id):
+    provider = Provider.objects.get(id=provider_id)
+    if request.method == 'POST':
+        dog_form = Dog_Form(request.POST)
+        if dog_form.is_valid():
+            new_dog = dog_form.save(commit=False)
+            new_dog.provider = provider
+            new_dog.save()
+        return redirect('home')
+
+
+def dog_form(request, provider_id):
+    provider = Provider.objects.get(id=provider_id)
+    form = Dog_Form()
+    context = {
+        "provider": provider,
+        "form": form,
+    }
+    return render(request, "dogs/dog_form.html", context)
+
+    
+    
+
+
         
