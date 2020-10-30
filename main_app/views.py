@@ -18,7 +18,8 @@ class SearchResults(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         dog_list = Dog.objects.filter(
-            Q(location__icontains=query)
+            Q(location__icontains=query) | 
+            Q(provider__in=Provider.objects.filter(location__icontains=query))
         )
         return dog_list
 
