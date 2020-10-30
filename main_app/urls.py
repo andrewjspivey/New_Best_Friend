@@ -1,8 +1,9 @@
-from main_app.views import prov_profile, dog_form, add_dog
+from main_app.views import prov_profile, dog_form, add_dog, SearchResults
 from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('search/', SearchResults.as_view(), name='search_results'),
     path('', views.home, name='home'),
     path('provider/<int:provider_id>/', views.prov_profile, name='prov_profile'),
     path('provider/<int:provider_id>/dog_add', views.add_dog, name='add_dog'),

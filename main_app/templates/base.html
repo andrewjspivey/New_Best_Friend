@@ -8,6 +8,11 @@
     <title>New Best Friend</title>
 </head>
 <body>
+    <header>
+        <form action="{% url 'search_results' %}" method="get">
+            <input name="q" type="text" placeholder="Search by location">
+          </form>
+    </header>
     <h1>New Best Friend</h1>
     <ul>
         <li><a href="{% url 'registration' %}">Register</a></li>

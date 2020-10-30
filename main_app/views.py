@@ -3,11 +3,24 @@ from .models import Dog, Provider, User, RegUser
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.forms import UserCreationForm
 from .forms import ProviderRegisterForm, RegUserRegisterForm, Dog_Form, EditProviderForm
+from django.views.generic import ListView
+from django.db.models import Q
 # Create your views here.
 
 
 def home(request):
     return render(request, "home.html")
+
+class SearchResults(ListView):
+    model = Dog
+    template_name = 'search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        dog_list = Dog.objects.filter(
+            Q(location__icontains=query)
+        )
+        return dog_list
 
 
 def dogs_index(request):

@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Search Results</h1>
+
+<ul>
+  {% for dog in dog_list %}
+    <li>
+      {{ dog.name }}, {{ dog.location }}
+    </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
