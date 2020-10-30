@@ -17,6 +17,16 @@ def dogs_index(request):
     return render(request, "dogs/index.html", context)
 
 
+def dog_show(request, dog_id):
+    dog = Dog.objects.get(id=dog_id)
+    provider = Provider.objects.all()
+    context = {
+        "dog": dog,
+        "provider": provider,
+    }
+    return render(request, "dogs/show.html", context)
+
+
 def prov_profile(request, provider_id):
     provider = Provider.objects.get(id=provider_id)
     dogs = Dog.objects.all()
@@ -114,6 +124,7 @@ def edit_dog(request, dog_id):
             'name': dog.name,
             'location': dog.location,
             'breed': dog.breed,
+            'breed': dog.breed,
             'gender': dog.gender,
             'neutured': dog.neutured,
             'image': dog.image,
@@ -125,5 +136,7 @@ def edit_dog(request, dog_id):
         }
         return render(request, 'dogs/edit.html', context)
 
-
+def delete_dog(request, dog_id):
+    Dog.objects.get(id=dog_id).delete()
+    return redirect('prov_profile', request.user.provider.id)
         

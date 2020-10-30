@@ -1,0 +1,24 @@
+{% extends "../base.html" %}
+
+
+{% block content %}
+
+
+    <h3>{{ dog.name }}</h3>
+    <img src="{{ dog.image }}" alt="image.jpg">
+    <div>
+        <ul>
+            <li>{{ dog.location }}</li>
+            <li>{{ dog.breed }}</li>
+            <li>{{ dog.age }}</li>
+            <li>{{ dog.gender }}</li>
+            <li>{{ dog.neutured }}</li>
+            <li>{{ dog.story }}</li>
+            <li><a href="{% url 'prov_profile' dog.provider.id %}">{{ dog.provider.shelterName }}</a></li>
+        </ul>
+
+    </div>
+
+
+
+{% endblock %}

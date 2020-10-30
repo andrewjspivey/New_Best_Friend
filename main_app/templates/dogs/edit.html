@@ -6,6 +6,7 @@
 		{%csrf_token%}
 		{{edit_form.as_p}}
 		<input type="submit" value="Edit Dog">
-	</form>
+    </form>
+    <a href="{% url 'delete_dog' dog.id %}">Delete this Dog</a>
 </div>
 {% endblock %}
