@@ -50,3 +50,17 @@ class Dog_Form(ModelForm):
             "image", "story"]
 
 
+class EditProviderForm(ModelForm):
+    shelterName = forms.CharField(max_length=75)
+    location = forms.CharField(max_length=75)
+    description = forms.CharField(max_length=500)
+    phone = forms.CharField(max_length=15)
+    website = forms.CharField(max_length=100)
+    image = forms.CharField(max_length=200)
+    adoptionProcess = forms.CharField(max_length=500)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'shelterName', 'location', 
+        'description', 'phone', 'website', 'image', 'adoptionProcess']
+

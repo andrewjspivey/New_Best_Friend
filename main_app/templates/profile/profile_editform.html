@@ -1,0 +1,14 @@
+{% extends "../base.html" %}
+
+
+{% block content %}
+
+<div>
+    <form action="{% url 'edit_provider' provider.id %}" method="POST">
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+        <input type="submit" value="Edit Profile">
+    </form>
+</div>
+
+{% endblock %}

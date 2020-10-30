@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Dog, Provider, User, RegUser
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ProviderRegisterForm, RegUserRegisterForm, Dog_Form
+from .forms import ProviderRegisterForm, RegUserRegisterForm, Dog_Form, EditProviderForm
 # Create your views here.
 
 
@@ -36,8 +36,45 @@ def prov_profile(request, provider_id):
     }
     return render(request, 'profile/prov_profile.html', context)
 
+
+def edit_provider(request, provider_id):
+    provider = Provider.objects.get(id=provider_id)
+    if request.method == 'POST':
+        edit_form = EditProviderForm(request.POST, instance=provider)
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect('home')
+    else:
+        edit_form = EditProviderForm(initial={
+            'shelterName': provider.shelterName,
+            'location': provider.location,
+            'description': provider.description,
+            'phone': provider.phone,
+            'website': provider.website,
+            'image': provider.image,
+            'adoptionProcess': provider.adoptionProcess,
+        })
+        context = {
+            'provider': provider,
+            'edit_form': edit_form
+        }
+        return render(request, 'profile/edit.html', context)
+
+
+def edit_provider_form(request, provider_id):
+    provider = Provider.objects.get(id=provider_id)
+    edit_form = EditProviderForm()
+    context = {
+        "provider": provider,
+        "edit_form": edit_form,
+    }
+    return render(request, "profile/profile_editform.html", context)
+
+
+
 def registration_type(request):
     return render(request, 'registration/register.html')
+
 
 def provider_registration(request):
     form = ProviderRegisterForm()
