@@ -101,7 +101,29 @@ def dog_form(request, provider_id):
     return render(request, "dogs/dog_form.html", context)
 
     
-    
+def edit_dog(request, dog_id):
+    dog = Dog.objects.get(id=dog_id)
+
+    if request.method == 'POST':
+        edit_form = Dog_Form(request.POST, instance=dog)
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect('home')
+    else:
+        edit_form = Dog_Form(initial={
+            'name': dog.name,
+            'location': dog.location,
+            'breed': dog.breed,
+            'gender': dog.gender,
+            'neutured': dog.neutured,
+            'image': dog.image,
+            'story': dog.story,
+        })
+        context = {
+            'dog': dog,
+            'edit_form': edit_form
+        }
+        return render(request, 'dogs/edit.html', context)
 
 
         
