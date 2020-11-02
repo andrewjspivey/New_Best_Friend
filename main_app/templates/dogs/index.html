@@ -4,20 +4,27 @@
 <h1>New Best Friend</h1>
 
 {% block content %}
-    {% for dog in dogs %}
-    <div>
-        <div>
-            <ul>
-                <li>{{dog.name}}</li>
-                <li>{{dog.breed}}</li>
-                <li>{{dog.location}}</li>
-                <li>{{dog.gender}}</li>
-                <li>{{dog.provider}}</li>
-                <li>{{dog.neutured}}</li>
-                <li>{{dog.age}}</li>
-            </ul>
-        </div>
+
+<div class="container">
+    <div class="row row-cols-3">
+        {% for dog in dogs %}
+            <div class="col"></div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ dog.image }}" class="card-img-top" alt="image.jpg">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <h4>{{ dog.name }}</h4>
+                                <ul>
+                                    <li>{{ dog.age }}</li>
+                                    <li>{{ dog.breed }}</li>
+                                    <li>{{ dog.location }}</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+            </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+</div>
 
 {% endblock %}

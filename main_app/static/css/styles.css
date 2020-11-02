@@ -43,3 +43,21 @@
 .collapse:not(.show) {
     display: flex !important;
 }
+
+#providerform {
+    width: 600px;
+    margin: auto;
+    padding-top: 3em;
+}
+
+.register-header {
+    align-content: center;
+    text-align: center;
+    margin: auto 0;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}

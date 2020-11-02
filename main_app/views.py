@@ -9,7 +9,11 @@ from django.db.models import Q
 
 
 def home(request):
-    return render(request, "home.html")
+    signup_modal = RegUserRegisterForm()
+    context = {
+        "signup_modal": signup_modal,
+    }
+    return render(request, "home.html", context)
 
 class SearchResults(ListView):
     model = Dog
@@ -26,7 +30,11 @@ class SearchResults(ListView):
 
 def dogs_index(request):
     dogs = Dog.objects.all()
-    context = {"dogs": dogs}
+    signup_modal = RegUserRegisterForm()
+    context = {
+        "dogs": dogs,
+        "signup_modal": signup_modal,
+    }
 
     return render(request, "dogs/index.html", context)
 
@@ -34,9 +42,11 @@ def dogs_index(request):
 def dog_show(request, dog_id):
     dog = Dog.objects.get(id=dog_id)
     provider = Provider.objects.all()
+    signup_modal = RegUserRegisterForm()
     context = {
         "dog": dog,
         "provider": provider,
+        "signup_modal": signup_modal,
     }
     return render(request, "dogs/show.html", context)
 
