@@ -1,4 +1,6 @@
-
+* {
+    box-sizing: border-box;
+}
 
 #topbar {
     background-color: #63A375;
@@ -20,7 +22,8 @@
     background-position: center;
     background-repeat: no-repeat;
     /* background-size: cover;  */
-    min-height: 290px;
+    min-height: 32vh;
+    margin-bottom: auto;
 }
 
 #searchbar {
@@ -57,7 +60,28 @@
 }
 
 .card-img-top {
-    width: 100%;
-    height: 15vw;
-    object-fit: cover;
+    width: 100% !important;
+    height: 20rem !important;
+    object-fit: cover !important;
+}
+
+.card {
+    max-width: 18.5rem
+}
+
+.search-container {
+    height: 8vh;
+    background-color: #63A375;
+    display: flex;
+    align-content: center;
+    margin: 1em;
+}
+
+.search-container .search-form {
+    margin: auto;
+}
+
+
+.search-container .search-form .search-input {
+    width: 30vw;
 }

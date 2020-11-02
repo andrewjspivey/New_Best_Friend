@@ -5,26 +5,25 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row row-cols-3">
+<div class="container" id="dog-card-container">
+    <div class="card-deck">
         {% for dog in dogs %}
-            <div class="col"></div>
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ dog.image }}" class="card-img-top" alt="image.jpg">
-                        <div class="card-body">
-                            <p class="card-text">
-                                <h4>{{ dog.name }}</h4>
-                                <ul>
-                                    <li>{{ dog.age }}</li>
-                                    <li>{{ dog.breed }}</li>
-                                    <li>{{ dog.location }}</li>
-                                </ul>
-                            </p>
-                        </div>
-                    </div>
+            <div class="card">
+                <img src="{{ dog.image }}" class="card-img-top" alt="image.jpg">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h4>{{ dog.name }}</h4>
+                        <ul>
+                            <li>{{ dog.age }}</li>
+                            <li>{{ dog.breed }}</li>
+                            <li>{{ dog.location }}</li>
+                        </ul>
+                    </p>
+                </div>
             </div>
         {% endfor %}
     </div>
 </div>
+
 
 {% endblock %}

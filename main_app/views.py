@@ -10,8 +10,10 @@ from django.db.models import Q
 
 def home(request):
     signup_modal = RegUserRegisterForm()
+    dogs = Dog.objects.all()
     context = {
         "signup_modal": signup_modal,
+        "dogs": dogs,
     }
     return render(request, "home.html", context)
 

@@ -10,7 +10,32 @@
       <h1 class="display-4">New Best Friend</h1>
       <p class="lead">The place to find the right dog for you</p>
     </div>
-  </div>
+</div>
 
+<div class="search-container">
+    <form class="search-form" action="{% url 'search_results' %}" method="GET">
+        <input class="search-input" name="q" type="text" placeholder="Search for dogs by location">
+    </form>
+</div>
+
+<div class="container" id="dog-card-container">
+    <div class="card-deck">
+        {% for dog in dogs %}
+            <div class="card">
+                <img src="{{ dog.image }}" class="card-img-top" alt="image.jpg">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h4>{{ dog.name }}</h4>
+                        <ul>
+                            <li>{{ dog.age }}</li>
+                            <li>{{ dog.breed }}</li>
+                            <li>{{ dog.location }}</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
