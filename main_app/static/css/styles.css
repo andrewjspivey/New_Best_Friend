@@ -101,8 +101,8 @@ body {
 }
 
 #dog-card-container {
-    width: calc(100% - 20vw);
-    margin: 0px 0px 0px 20vw;
+    width: 100%;
+    margin: auto 0;
 }
 
 .show-container {
@@ -149,4 +149,16 @@ body {
 
 .modal.fade .modal-content .modal-footer .btn.btn-primary {
     background-color: #63A375 !important;
+}
+
+.search-header {
+    text-align: center;
+}
+
+.bg-light-red {
+    background-color: #63A375 !important;
+}
+
+.featured {
+    text-align: center;
 }

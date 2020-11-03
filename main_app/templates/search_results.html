@@ -3,12 +3,23 @@
 
 {% block content %}
 
-<h1>Search Results</h1>
+<h1 class="search-header">Search Results</h1>
 
+<div class="pa4-l">
+    <form class="bg-light-red mw7 center pa4 br2-ns ba b--black-10" action="{% url 'search_results' %}" method="GET">
+      <fieldset class="cf bn ma0 pa0">
+        <legend class="pa0 f5 f4-ns mb3 black-80">Search for dogs by location</legend>
+        <div class="cf">
+          <label class="clip" for="email-address">Email Address</label>
+          <input class="f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-80 w-75-m w-80-l br2-ns br--left-ns" placeholder="ex. San Francisco, Oakland, CA" type="text" name="q" value="" id="email-address">
+          <input class="f6 f5-l button-reset fl pv3 tc bn bg-animate bg-black-70 hover-bg-black white pointer w-80 w-25-m w-20-l br2-ns br--right-ns" type="submit" value="Search">
+        </div>
+      </fieldset>
+    </form>
+</div>
 
-
-<div class="container" id="dog-card-container">
-    <div class="row row-cols-1 row-cols-md-3">
+<div class="container-fluid" id="dog-card-container">
+    <div class="row row-cols-1 row-cols-md-4">
         {% for dog in dog_list %}
             <div class="col mb-4">
                 <div class="card">
