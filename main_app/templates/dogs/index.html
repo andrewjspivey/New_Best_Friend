@@ -6,19 +6,23 @@
 {% block content %}
 
 <div class="container" id="dog-card-container">
-    <div class="card-deck">
+    <div class="row row-cols-1 row-cols-md-3">
         {% for dog in dogs %}
-            <div class="card">
-                <img src="{{ dog.image }}" class="card-img-top" alt="image.jpg">
-                <div class="card-body">
-                    <p class="card-text">
-                        <h4>{{ dog.name }}</h4>
-                        <ul>
-                            <li>{{ dog.age }}</li>
-                            <li>{{ dog.breed }}</li>
-                            <li>{{ dog.location }}</li>
-                        </ul>
-                    </p>
+            <div class="col mb-4">
+                <div class="card">
+                    <a href="{% url 'dog_show' dog.id %}">
+                        <img src="{{ dog.image }}" class="card-img-top" alt="image.jpg">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <h4>{{ dog.name }}</h4>
+                            <ul>
+                                <li>{{ dog.age }}</li>
+                                <li>{{ dog.breed }}</li>
+                                <li>{{ dog.location }}</li>
+                            </ul>
+                        </p>
+                    </div>
                 </div>
             </div>
         {% endfor %}

@@ -2,10 +2,16 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: whitesmoke;
+}
+
 #topbar {
     background-color: #63A375;
     width: 100%;
     box-sizing: border-box;
+    font-family: 'Amatic SC', cursive;
+    font-size: 1.5em;
 }
 
 .nav-link {
@@ -24,6 +30,14 @@
     /* background-size: cover;  */
     min-height: 32vh;
     margin-bottom: auto;
+    font-family: 'Amatic SC', cursive;
+}
+
+.jumbotron .container .lead {
+    font-size: 2em;
+}
+.jumbotron .container .display-4 {
+    font-size: 4.5em;
 }
 
 #searchbar {
@@ -84,4 +98,55 @@
 
 .search-container .search-form .search-input {
     width: 30vw;
+}
+
+#dog-card-container {
+    width: calc(100% - 20vw);
+    margin: 0px 0px 0px 20vw;
+}
+
+.show-container {
+    text-align: center;
+    margin-top: 6vh;
+    font-family: 'Amatic SC', cursive;
+
+}
+
+
+#image-container {
+    display: flex;
+    align-content: center;
+    margin-top: 6vh;
+}
+
+#image-container .dog-image {
+    margin: auto;
+    min-width: 25vw;
+    max-width: 34vw;
+    min-height: 60vh;
+    max-height: 65vh;
+    border-radius: 10px;
+}
+
+.dog-info {
+    margin-left: 20vw;
+    margin-right: 20vw;
+    margin-top: 3em;
+    background-color: rgb(212, 209, 209);
+    border-radius: 10px;
+}
+
+.dog-info .show-name {
+    padding-top: 0.7em;
+    margin-left: 7%;
+}
+
+.dog-info .info-list {
+    list-style-type: none;
+    margin-left: 5%;
+    margin-right: 5%
+}
+
+.modal.fade .modal-content .modal-footer .btn.btn-primary {
+    background-color: #63A375 !important;
 }

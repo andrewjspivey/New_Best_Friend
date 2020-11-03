@@ -5,12 +5,30 @@
 
 <h1>Search Results</h1>
 
-<ul>
-  {% for dog in dog_list %}
-    <li>
-      {{ dog.name }}, {{ dog.location }}
-    </li>
-  {% endfor %}
-</ul>
+
+
+<div class="container" id="dog-card-container">
+    <div class="row row-cols-1 row-cols-md-3">
+        {% for dog in dog_list %}
+            <div class="col mb-4">
+                <div class="card">
+                    <a href="{% url 'dog_show' dog.id %}">
+                        <img src="{{ dog.image }}" class="card-img-top" alt="image.jpg">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <h4>{{ dog.name }}</h4>
+                            <ul>
+                                <li>{{ dog.age }}</li>
+                                <li>{{ dog.breed }}</li>
+                                <li>{{ dog.location }}</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
