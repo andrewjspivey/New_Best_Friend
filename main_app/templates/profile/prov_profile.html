@@ -10,32 +10,27 @@
 <div class="prov-grid">
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
-                <img src="{{ provider.image }}" alt="photo.jpg">
+            <div class="col-3">
+                <img id="shelter-image" src="{{ provider.image }}" alt="photo.jpg">
             </div>
             <div class="col-5" id="provider-title">
                 <h2>{{ provider.shelterName }}</h2>
                 <h3>{{ provider.location }}</h3>
             </div>
-            <div class="col-4">
-                <table class="table table-borderless">
+            <div class="col-4" id="contact-table">
+                <table class="table table-borderless" id="shelter-contact">
                     <tbody>
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="row"><i class="fas fa-phone"></i></th>
+                        <td>{{provider.phone}}</td>
                       </tr>
                       <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
+                        <th scope="row"><i class="fas fa-link"></i></th>
+                        <td>{{ provider.website }}</td>
                       </tr>
                       <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
+                        <th scope="row"><i class="fas fa-envelope-square"></i></th>
+                        <td>{{provider.user.email}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -46,32 +41,44 @@
 
 </div>
 
+<hr>
 
 
 
-
-    <div>
-        <ul>
-            <li>{{provider.location}}</li>
-            <li>{{provider.description}}</li>
-            <li>{{provider.website}}</li>
-            <li>{{provider.phone}}</li>
-            <li>{{provider.adoptionProcess}}</li>
-        </ul>
+    <div id="shelter-info">
+        <h3>About {{ provider.shelterName }}</h3>
+        {{provider.description}}
+        <hr>
+        <h3>Adoption Process</h3>
+        {{provider.adoptionProcess}}
     </div>
-    <div>
-        <ul>
+
+    <h2 id="shelters-dogs">{{ provider.shelterName }}'s Dogs</h2>
+
+    <div class="container-fluid" id="dog-card-container">
+        <div class="row row-cols-1 row-cols-md-4">
             {% for dog in dogs %}
             {% if dog.provider == provider %}
-                <li>{{ dog.name }}</li>
-                <li>{{ dog.breed }}</li>
-                <li>{{ dog.provider.shelterName }}</li>
-                <li>{{ dog.image }}</li>
-                <li>{{ dog.story }}</li>
-            {% endif%}
+                <div class="col mb-4">
+                    <div class="card">
+                        <a href="{% url 'dog_show' dog.id %}">
+                            <img src="{{ dog.image }}" class="card-img-top" alt="image.jpg">
+                        </a>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <h4>{{ dog.name }}</h4>
+                                <ul>
+                                    <li>{{ dog.age }}</li>
+                                    <li>{{ dog.breed }}</li>
+                                    <li>{{ dog.location }}</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
             {% endfor %}
-        </ul>
+        </div>
     </div>
-
 
 {% endblock %}

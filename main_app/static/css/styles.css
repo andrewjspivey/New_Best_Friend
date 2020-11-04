@@ -196,8 +196,30 @@ h2.show-name {
     font-size: 1.1rem !important;
 }
 
-#provider-title {
+#provider-title h2{
     margin-top: 3rem !important;
+    margin-bottom: 2rem !important;
+
 }
 
+#shelter-contact {
+    margin-top: 2rem !important;
+}
 
+#shelter-image {
+    max-width: 90% !important;
+    min-height: 90% !important;
+}
+
+.prov-grid {
+    margin-left: 2rem;
+}
+
+#shelter-info {
+    margin: 2% 10% 2% 10%;
+}
+
+#shelters-dogs {
+    text-align: center;
+    margin-bottom: 1rem;
+}

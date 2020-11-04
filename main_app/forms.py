@@ -68,7 +68,7 @@ class EditProviderForm(ModelForm):
     adoptionProcess = forms.CharField(max_length=500)
 
     class Meta:
-        model = User
-        fields = ['username', 'email', 'shelterName', 'location', 
+        model = Provider
+        fields = ['shelterName', 'location', 
         'description', 'phone', 'website', 'image', 'adoptionProcess']
 

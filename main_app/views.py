@@ -71,15 +71,7 @@ def edit_provider(request, provider_id):
             edit_form.save()
             return redirect('home')
     else:
-        edit_form = EditProviderForm(initial={
-            'shelterName': provider.shelterName,
-            'location': provider.location,
-            'description': provider.description,
-            'phone': provider.phone,
-            'website': provider.website,
-            'image': provider.image,
-            'adoptionProcess': provider.adoptionProcess,
-        })
+        edit_form = EditProviderForm()
         context = {
             'provider': provider,
             'edit_form': edit_form
@@ -89,7 +81,15 @@ def edit_provider(request, provider_id):
 
 def edit_provider_form(request, provider_id):
     provider = Provider.objects.get(id=provider_id)
-    edit_form = EditProviderForm()
+    edit_form = EditProviderForm(initial={
+        'shelterName': provider.shelterName,
+        'location': provider.location,
+        'description': provider.description,
+        'phone': provider.phone,
+        'website': provider.website,
+        'image': provider.image,
+        'adoptionProcess': provider.adoptionProcess,
+    })
     context = {
         "provider": provider,
         "edit_form": edit_form,
