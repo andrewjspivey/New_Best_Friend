@@ -109,9 +109,11 @@ body {
     text-align: center;
     margin-top: 6vh;
     font-family: 'Amatic SC', cursive;
-
 }
 
+.show-container .show-title {
+    font-size: 3rem
+}
 
 #image-container {
     display: flex;
@@ -134,17 +136,23 @@ body {
     margin-top: 3em;
     background-color: rgb(212, 209, 209);
     border-radius: 10px;
+    font-family: 'Itim', cursive;
+    padding-bottom: 2rem;
 }
 
 .dog-info .show-name {
     padding-top: 0.7em;
-    margin-left: 7%;
+    margin-left: 2em;
+}
+
+h2.show-name {
+    margin-bottom: 0% !important;
 }
 
 .dog-info .info-list {
     list-style-type: none;
     margin-left: 5%;
-    margin-right: 5%
+    margin-right: 5%;
 }
 
 .modal.fade .modal-content .modal-footer .btn.btn-primary {
@@ -153,6 +161,8 @@ body {
 
 .search-header {
     text-align: center;
+    font-family: 'Itim', cursive;
+
 }
 
 .bg-light-red {
@@ -161,4 +171,33 @@ body {
 
 .featured {
     text-align: center;
+    font-family: 'Itim', cursive;
+    padding-bottom: 1rem;
 }
+
+#provider-card.card {
+   /*  width: 100% !important; */
+    max-width: 100% !important;
+    margin-left: 8%;
+    margin-right: 8%;
+    padding-bottom: 2em;
+}
+
+#provider-card.card .card-body .info-list {
+    margin-left: 3rem !important;
+}
+
+#provider-card.card .card-body .card-title {
+    font-size: 2rem !important;
+    padding-left: 3rem !important;
+}
+
+.f6 {
+    font-size: 1.1rem !important;
+}
+
+#provider-title {
+    margin-top: 3rem !important;
+}
+
+

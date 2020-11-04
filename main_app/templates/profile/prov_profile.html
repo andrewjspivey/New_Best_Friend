@@ -6,6 +6,50 @@
 <h3>{{ provider.name }}</h3>
 
 {% block content %}
+
+<div class="prov-grid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <img src="{{ provider.image }}" alt="photo.jpg">
+            </div>
+            <div class="col-5" id="provider-title">
+                <h2>{{ provider.shelterName }}</h2>
+                <h3>{{ provider.location }}</h3>
+            </div>
+            <div class="col-4">
+                <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
     <div>
         <ul>
             <li>{{provider.location}}</li>

@@ -11,19 +11,40 @@
 </div>
 
 <div class="dog-info">
-    <h2 class="show-name">{{ dog.name }}</h2> 
-    <ul class="info-list">
-        <li>{{ dog.location }}</li>
-        <li>{{ dog.breed }}</li>
-        <li>{{ dog.age }}</li>
-        <li>{{ dog.gender }}</li>
-        <li>{{ dog.neutured }}</li>
-        <li>{{ dog.story }}</li>
-    </ul>
+    <h2 class="show-name">About {{ dog.name }}</h2> 
+    <div class="info-list">
+        <dl class="lh-title pa4 mt0">
+            <dt class="f6 b">Location</dt>
+            <dd class="ml0">{{ dog.location }}</dd>
+            <dt class="f6 b mt2">Breed</dt>
+            <dd class="ml0"><li>{{ dog.breed }}</li></dd>
+            <dt class="f6 b mt2">Age</dt>
+            <dd class="ml0"><li>{{ dog.age }}</li></dd>
+            <dt class="f6 b mt2">Gender</dt>
+            <dd class="ml0"><li>{{ dog.gender }}</li></dd>
+            <dt class="f6 b mt2">Neutured</dt>
+            <dd class="ml0"><li>{{ dog.neutured }}</li></dd>
+            <dt class="f6 b mt2">{{ dog.name }}'s Story</dt>
+            <dd class="ml0"><li>{{ dog.story }}</li></dd>
+          </dl>
+    </div>
+    <div class="card" id="provider-card">
+        <div class="card-body">
+            <h3 class="card-title">{{dog.provider.shelterName}}</h3>
+            <div class="info-list">
+
+                    <dt class="f6 b">Location</dt>
+                    <dd class="ml0">{{ dog.provider.location }}</dd>
+                    <dt class="f6 b mt2">Website</dt>
+                    <dd class="ml0"><li>{{ dog.provider.website }}</li></dd>
+                    <dt class="f6 b mt2">Phone</dt>
+                    <dd class="ml0"><li>{{ dog.provider.phone }}</li></dd>
+                <a href="{% url 'prov_profile' dog.provider.id %}" class="btn btn-primary">More about {{dog.provider.shelterName}}</a>
+            </div>
+        </div>
+    </div>
     
 </div>
-
-<li><a href="{% url 'prov_profile' dog.provider.id %}">{{ dog.provider.shelterName }}</a></li>
 
 
 {% endblock %}
