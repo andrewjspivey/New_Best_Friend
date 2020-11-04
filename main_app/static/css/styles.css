@@ -192,6 +192,21 @@ h2.show-name {
     padding-left: 3rem !important;
 }
 
+#dog-card-container ul > li {
+    display: inline-block;
+    zoom:1;
+    *display:inline;
+    /* this fix is needed for IE7- */
+}
+
+#dog-card-container ul{
+    margin-left: 1rem !important;
+    padding-inline-start: 0rem !important;
+}
+#dog-card-container .card-body h4{
+    text-align: center !important;
+}
+
 .f6 {
     font-size: 1.1rem !important;
 }
@@ -223,3 +238,23 @@ h2.show-name {
     text-align: center;
     margin-bottom: 1rem;
 }
+
+.card{
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+
+    cursor: pointer;
+}
+
+.card:hover{
+     transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+#search-text {
+    font-family: 'Itim', cursive !important;
+    font-size: 1.5rem !important;
+}
+

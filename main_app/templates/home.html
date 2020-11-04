@@ -15,7 +15,7 @@
 <div class="pa4-l">
     <form class="bg-light-red mw7 center pa4 br2-ns ba b--black-10" action="{% url 'search_results' %}" method="GET">
       <fieldset class="cf bn ma0 pa0">
-        <legend class="pa0 f5 f4-ns mb3 black-80">Search for dogs by location</legend>
+        <legend class="pa0 f5 f4-ns mb3 black-80" id="search-text">Search for dogs by location</legend>
         <div class="cf">
           <label class="clip" for="email-address">Email Address</label>
           <input class="f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-80 w-75-m w-80-l br2-ns br--left-ns" placeholder="ex. San Francisco, Oakland, CA" type="text" name="q" value="" id="email-address">
@@ -36,14 +36,12 @@
                         <img src="{{ dog.image }}" class="card-img-top" alt="image.jpg">
                     </a>
                     <div class="card-body">
-                        <p class="card-text">
                             <h4>{{ dog.name }}</h4>
                             <ul>
-                                <li>{{ dog.age }}</li>
-                                <li>{{ dog.breed }}</li>
+                                <li>{{ dog.breed }}</li>,
+                                <li> {{ dog.age }}</li>
                                 <li>{{ dog.location }}</li>
                             </ul>
-                        </p>
                     </div>
                 </div>
             </div>
