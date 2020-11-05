@@ -11,7 +11,7 @@ from django.contrib.auth import login, authenticate
 
 def home(request):
     signup_modal = RegUserRegisterForm()
-    dogs = Dog.objects.all()
+    dogs = Dog.objects.order_by('-id')[:7]
     context = {
         "signup_modal": signup_modal,
         "dogs": dogs,
@@ -40,6 +40,13 @@ def dogs_index(request):
     }
 
     return render(request, "dogs/index.html", context)
+
+def shelter_index(request):
+    providers = Provider.objects.all()
+    context = {
+        "providers": providers,
+    }
+    return render(request, "shelter/index.html", context)
 
 
 def dog_show(request, dog_id):
@@ -164,6 +171,7 @@ def register_regUser(request):
 
 
 def add_dog(request, provider_id):
+    error_message = ''
     provider = Provider.objects.get(id=provider_id)
     if request.method == 'POST':
         dog_form = Dog_Form(request.POST)
@@ -171,7 +179,12 @@ def add_dog(request, provider_id):
             new_dog = dog_form.save(commit=False)
             new_dog.provider = provider
             new_dog.save()
-        return redirect('home')
+            return redirect('prov_profile', provider.id)
+        else:
+            error_message = 'Please try again, make sure the form is complete and the image is a link'
+    dog_form = Dog_Form()
+    context = {'dog_form': dog_form, 'error_message': error_message}
+    return render(request, 'dogs/dog_form.html', context)
 
 
 def dog_form(request, provider_id):
@@ -216,3 +229,4 @@ def delete_dog(request, dog_id):
     Dog.objects.get(id=dog_id).delete()
     return redirect('prov_profile', request.user.provider.id)
         
+

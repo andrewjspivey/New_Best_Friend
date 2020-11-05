@@ -1,45 +1,42 @@
+{% extends '../base.html' %}
+{% load static %}
 
-{% extends "base.html" %}
 
 {% block content %}
 
-<h1 class="search-header">Search Results</h1>
-
-<div class="pa4-l">
+<!-- <div class="pa4-l">
     <form class="bg-light-red mw7 center pa4 br2-ns ba b--black-10" action="{% url 'search_results' %}" method="GET">
       <fieldset class="cf bn ma0 pa0">
         <legend class="pa0 f5 f4-ns mb3 black-80" id="search-text">Search for dogs by location</legend>
         <div class="cf">
           <label class="clip" for="email-address">Email Address</label>
-          <input class="f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-80 w-75-m w-80-l br2-ns br--left-ns" placeholder="ex. San Francisco; Oakland, CA" type="text" name="q" value="" id="email-address">
+          <input class="f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-80 w-75-m w-80-l br2-ns br--left-ns" placeholder="ex. San Francisco, Oakland, CA" type="text" name="q" value="" id="email-address">
           <input class="f6 f5-l button-reset fl pv3 tc bn bg-animate bg-black-70 hover-bg-black white pointer w-80 w-25-m w-20-l br2-ns br--right-ns" type="submit" value="Search">
         </div>
       </fieldset>
     </form>
-</div>
+</div> -->
+
 
 <div class="container-fluid" id="dog-card-container">
     <div class="row row-cols-1 row-cols-md-4">
-        {% for dog in dog_list %}
+        {% for provider in providers %}
             <div class="col mb-4">
                 <div class="card">
-                    <a href="{% url 'dog_show' dog.id %}">
-                        <img src="{{ dog.image }}" class="card-img-top" alt="image.jpg">
+                    <a href="{% url 'prov_profile' provider.id %}">
+                        <img src="{{ provider.image }}" class="card-img-top" alt="image.jpg">
                     </a>
                     <div class="card-body">
-                        <p class="card-text">
-                            <h4>{{ dog.name }}</h4>
+                            <h4>{{ provider.shelterName }}</h4>
                             <ul>
-                                <li>{{ dog.age }}</li>
-                                <li>{{ dog.breed }}</li>
-                                <li>{{ dog.location }}</li>
+                                <li>{{ provider.location }}</li>
                             </ul>
-                        </p>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
 </div>
+
 
 {% endblock %}

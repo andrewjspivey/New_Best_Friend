@@ -10,6 +10,7 @@ urlpatterns = [
     path('provider/<int:provider_id>/dog_form/', views.dog_form, name='dog_form'),
     path('provider/<int:provider_id>/edit_provider/', views.edit_provider, name='edit_provider'),
     path('provider/<int:provider_id>/edit_form/', views.edit_provider_form, name='edit_provider_form'),
+    path('shelters/', views.shelter_index, name='shelter_index'),
     path('dogs/', views.dogs_index, name='dogs'),
     path('dogs/<int:dog_id>/', views.dog_show, name='dog_show'),
     path('dogs/<int:dog_id>/edit', views.edit_dog, name='edit_dog'),

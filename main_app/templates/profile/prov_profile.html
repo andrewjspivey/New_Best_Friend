@@ -77,13 +77,13 @@
                         <div class="card-body">
                                 <h4>{{ dog.name }}</h4>
                                 <ul>
-                                    <li>{{ dog.breed }}</li>,
+                                    <li>{{ dog.breed }}</li>
                                     <li> {{ dog.age }}</li>
                                     <li>{{ dog.location }}</li>
                                 </ul>
                         </div>
                         {% if dog.provider.id == request.user.provider.id %}
-                        <a href="{% url 'edit_dog' dog.id %}">edit</a>
+                        <a id="nbf-button2" href="{% url 'edit_dog' dog.id %}"type="button" class="btn btn-primary">Edit Dog</a>
                         {% endif %}
                     </div>
                 </div>

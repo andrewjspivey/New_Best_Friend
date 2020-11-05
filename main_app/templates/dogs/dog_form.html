@@ -3,7 +3,11 @@
 
 {% block content %}
 
-<div>
+<div class="register-header">
+    <h2>Post a new dog for your shelter</h2>
+</div>
+
+<div id="loginform">
     <form action="{% url 'add_dog' provider.id %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
