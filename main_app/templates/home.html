@@ -38,14 +38,21 @@
                     <div class="card-body">
                             <h4>{{ dog.name }}</h4>
                             <ul>
-                                <li>{{ dog.breed }}</li>,
-                                <li> {{ dog.age }}</li>
+                                <li>{{ dog.breed }}</li>
+                                <li>{{ dog.age }}</li>
                                 <li>{{ dog.location }}</li>
                             </ul>
                     </div>
                 </div>
             </div>
         {% endfor %}
+        <div class="col mb-4">
+            <div>
+                <a href="{% url 'dogs' %}">
+                    <h2 id="all-dogs-link">See all dogs -></h2>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 

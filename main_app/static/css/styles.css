@@ -208,8 +208,12 @@ h2.show-name {
     padding-left: 3rem !important;
 }
 
+.card-body {
+    padding: 1rem 2rem 0.2rem 2rem !important;
+}
+
 #dog-card-container ul > li {
-    display: inline-block;
+    display: block;
     zoom:1;
     *display:inline;
     /* this fix is needed for IE7- */
@@ -218,9 +222,11 @@ h2.show-name {
 #dog-card-container ul{
     margin-left: 1rem !important;
     padding-inline-start: 0rem !important;
+    font-family: 'Itim', cursive;
 }
 #dog-card-container .card-body h4{
     text-align: center !important;
+    font-family: 'Itim', cursive;
 }
 
 .f6 {
@@ -295,4 +301,8 @@ h2.show-name {
 
 .text-red {
     color: red;
+}
+
+#all-dogs-link {
+    color: #63A375
 }
