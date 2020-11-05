@@ -1,16 +1,9 @@
-{% extends 'base.html' %}
-{% load static %}
 
-
+{% extends "base.html" %}
 
 {% block content %}
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">New Best Friend</h1>
-      <h3 class="lead">The place to find the right dog for you</h3>
-    </div>
-</div>
+<h1 class="search-header">Search Results</h1>
 
 <div class="pa4-l">
     <form class="bg-light-red mw7 center pa4 br2-ns ba b--black-10" action="{% url 'search_results' %}" method="GET">
@@ -25,34 +18,27 @@
     </form>
 </div>
 
-<h2 class="featured">Featured Dogs</h2>
-
 <div class="container-fluid" id="dog-card-container">
     <div class="row row-cols-1 row-cols-md-4">
-        {% for dog in dogs %}
+        {% for dog in dog_list %}
             <div class="col mb-4">
                 <div class="card">
                     <a href="{% url 'dog_show' dog.id %}">
-                        <img src="{{ dog.image }}" class="card-img-top" alt="photo.jpg">
+                        <img src="{{ dog.image }}" class="card-img-top" alt="image.jpg">
                     </a>
                     <div class="card-body">
+                        <p class="card-text">
                             <h4>{{ dog.name }}</h4>
                             <ul>
-                                <li>{{ dog.breed }}</li>
                                 <li>{{ dog.age }}</li>
+                                <li>{{ dog.breed }}</li>
                                 <li>{{ dog.location }}</li>
                             </ul>
+                        </p>
                     </div>
                 </div>
             </div>
         {% endfor %}
-        <div class="col mb-4">
-            <div>
-                <a href="{% url 'dogs' %}">
-                    <h2 id="all-dogs-link">See all dogs -></h2>
-                </a>
-            </div>
-        </div>
     </div>
 </div>
 

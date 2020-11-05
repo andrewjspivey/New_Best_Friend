@@ -1,0 +1,95 @@
+{% extends '../base.html' %}
+
+
+
+<h3>{{ provider.name }}</h3>
+
+{% block content %}
+
+<div class="prov-grid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <img id="shelter-image" src="{{ provider.image }}" alt="photo.jpg">
+            </div>
+            <div class="col-5" id="provider-title">
+                <h2>{{ provider.shelterName }}</h2>
+                <h3>{{ provider.location }}</h3>
+            </div>
+            <div class="col-4" id="contact-table">
+                <table class="table table-borderless" id="shelter-contact">
+                    <tbody>
+                      <tr>
+                        <th scope="row"><i class="fas fa-phone"></i></th>
+                        <td>{{provider.phone}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><i class="fas fa-link"></i></th>
+                        <td>{{ provider.website }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><i class="fas fa-envelope-square"></i></th>
+                        <td>{{provider.user.email}}</td>
+                      </tr>
+                      {% if provider.id == request.user.provider.id %}
+                      <tr>
+                        <th scope="row"></th>
+                        <td><a id="nbf-button" href="{% url 'edit_provider_form' provider.id %}" type="button" class="btn btn-primary">Edit Shelter Info</a></td>
+                      </tr>
+                        {% endif %}
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<hr>
+
+
+    <div id="shelter-info">
+        <h3>About {{ provider.shelterName }}</h3>
+        {{provider.description}}
+        <hr>
+        <h3>Adoption Process</h3>
+        {{provider.adoptionProcess}}
+    </div>
+<hr>
+
+<div class="shelters-dogs">
+    <h2 id="shelters-dogs">{{ provider.shelterName }}'s Dogs</h2>
+    {% if provider.id == request.user.provider.id %}
+    <a id="nbf-button2"href="{% url 'dog_form' provider.id%}" type="button" class="btn btn-primary">Add a Dog</a>
+    {% endif %}
+</div>
+
+    <div class="container-fluid" id="dog-card-container">
+        <div class="row row-cols-1 row-cols-md-4">
+            {% for dog in dogs %}
+            {% if dog.provider == provider %}
+                <div class="col mb-4">
+                    <div class="card">
+                        <a href="{% url 'dog_show' dog.id %}">
+                            <img src="{{ dog.image }}" class="card-img-top" alt="image.jpg">
+                        </a>
+                        <div class="card-body">
+                                <h4>{{ dog.name }}</h4>
+                                <ul>
+                                    <li>{{ dog.breed }}</li>
+                                    <li> {{ dog.age }}</li>
+                                    <li>{{ dog.location }}</li>
+                                </ul>
+                        </div>
+                        {% if dog.provider.id == request.user.provider.id %}
+                        <a id="nbf-button2" href="{% url 'edit_dog' dog.id %}"type="button" class="btn btn-primary">Edit Dog</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

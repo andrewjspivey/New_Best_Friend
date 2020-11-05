@@ -1,0 +1,21 @@
+{% extends "../base.html" %}
+
+
+{% block content %}
+<div class="register-header">
+    <h1>Sign up your Shelter</h1>
+    <hr>
+    <h4>This will create your profile page. You can then add your dogs</h4>
+</div>
+{% if error_message %}<p class="text-red">{{ error_message }}</p>{% endif %}
+<div id="providerform">
+    <div class= "form-group">
+        <form action="{% url 'register_provider' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

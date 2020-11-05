@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="register-header">
+    <h1>EDIT DOG</h1>
+</div>
+<div id="loginform">
+	<form action="{% url 'edit_dog' dog.id %}" method="POST">
+		{%csrf_token%}
+		{{edit_form.as_p}}
+		<input type="submit" value="Edit Dog">
+    </form>
+    <a href="{% url 'delete_dog' dog.id %}">Delete this Dog</a>
+</div>
+{% endblock %}

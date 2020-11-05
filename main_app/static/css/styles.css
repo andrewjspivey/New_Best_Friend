@@ -1,0 +1,314 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+#topbar {
+    background-color: #63A375;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Amatic SC', cursive;
+    font-size: 1.5em;
+}
+
+.nav-link {
+    color: whitesmoke;
+}
+
+.jumbotron {
+    background-image: url("../images/jumbotron2.jpg");
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background-size: cover;  */
+    min-height: 32vh;
+    margin-bottom: auto;
+    font-family: 'Amatic SC', cursive;
+}
+
+.jumbotron .container .lead {
+    font-size: 2em;
+    margin-left: 2rem;
+    color: whitesmoke;
+    padding-left: 0.2rem;
+}
+.jumbotron .container .display-4 {
+    font-size: 4.5em;
+    margin-left: 2rem;
+    color: whitesmoke;
+}
+
+#searchbar {
+    padding-top: 6px;
+}
+
+.jumbotron .container {
+    position: relative !important;
+    margin-top: 15px;
+    padding-left: 1rem !important;
+}
+
+
+.collapse:not(.show) {
+    display: flex !important;
+}
+
+#providerform {
+    width: 600px;
+    margin: auto;
+    padding-top: 3em;
+}
+
+.register-header {
+    align-content: center;
+    text-align: center;
+    margin: auto 0;
+}
+
+#loginform {
+    display: block;
+    text-align: center;
+}
+
+#loginform form {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+#loginform form p {
+    display: table-caption;
+}
+
+.card-img-top {
+    width: 100% !important;
+    height: 20rem !important;
+    object-fit: cover !important;
+}
+
+.card {
+    max-width: 18.5rem
+}
+
+.search-container {
+    height: 8vh;
+    background-color: #63A375;
+    display: flex;
+    align-content: center;
+    margin: 1em;
+}
+
+.search-container .search-form {
+    margin: auto;
+}
+
+
+.search-container .search-form .search-input {
+    width: 30vw;
+}
+
+#dog-card-container {
+    width: 100%;
+    margin: auto 0;
+}
+
+.show-container {
+    text-align: center;
+    margin-top: 6vh;
+    font-family: 'Amatic SC', cursive;
+}
+
+.show-container .show-title {
+    font-size: 3rem
+}
+
+#image-container {
+    display: flex;
+    align-content: center;
+    margin-top: 6vh;
+}
+
+#image-container .dog-image {
+    margin: auto;
+    min-width: 25vw;
+    max-width: 34vw;
+    min-height: 60vh;
+    max-height: 65vh;
+    border-radius: 10px;
+}
+
+.dog-info {
+    margin-left: 20vw;
+    margin-right: 20vw;
+    margin-top: 3em;
+    background-color: rgb(212, 209, 209);
+    border-radius: 10px;
+    border: 10px solid #63A375;
+    font-family: 'Itim', cursive;
+    padding-bottom: 2rem;
+}
+
+.dog-info .show-name {
+    padding-top: 0.7em;
+    margin-left: 2em;
+}
+
+h2.show-name {
+    margin-bottom: 0% !important;
+}
+
+.dog-info .info-list {
+    list-style-type: none;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.modal.fade .modal-content .modal-footer .btn.btn-primary {
+    background-color: #63A375 !important;
+}
+
+.search-header {
+    text-align: center;
+    font-family: 'Itim', cursive;
+
+}
+
+.bg-light-red {
+    background-color: #63A375 !important;
+}
+
+.featured {
+    text-align: center;
+    font-family: 'Itim', cursive;
+    padding-bottom: 1rem;
+}
+
+#provider-card.card {
+   /*  width: 100% !important; */
+    max-width: 100% !important;
+    margin-left: 8%;
+    margin-right: 8%;
+    padding-bottom: 2em;
+}
+
+#provider-card.card .card-body .info-list {
+    margin-left: 3rem !important;
+}
+
+#provider-card.card .card-body .card-title {
+    font-size: 2rem !important;
+    padding-left: 3rem !important;
+}
+
+.card-body {
+    padding: 1rem 2rem 0.2rem 2rem !important;
+}
+
+#dog-card-container ul > li {
+    display: block;
+    zoom:1;
+    *display:inline;
+    /* this fix is needed for IE7- */
+}
+
+#dog-card-container ul{
+    margin-left: 1rem !important;
+    padding-inline-start: 0rem !important;
+    font-family: 'Itim', cursive;
+}
+#dog-card-container .card-body h4{
+    text-align: center !important;
+    font-family: 'Itim', cursive;
+}
+
+.f6 {
+    font-size: 1.1rem !important;
+}
+
+#provider-title h2{
+    margin-top: 3rem !important;
+    margin-bottom: 2rem !important;
+
+}
+
+#shelter-contact {
+    margin-top: 2rem !important;
+}
+
+#shelter-image {
+    max-width: 90% !important;
+    min-height: 90% !important;
+    margin-top: 1rem;
+}
+
+.prov-grid {
+    margin-left: 2rem;
+}
+
+#shelter-info {
+    margin: 2% 10% 2% 10%;
+}
+
+#shelters-dogs {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.card{
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+
+    cursor: pointer;
+}
+
+.card:hover{
+     transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+#search-text {
+    font-family: 'Itim', cursive !important;
+    font-size: 1.5rem !important;
+}
+
+#nbf-button {
+    background-color: #63A375 !important;
+    border-color: whitesmoke !important;
+}
+#nbf-button2 {
+    background-color: #63A375 !important;
+    border-color: whitesmoke !important;
+    margin-bottom: 1rem !important;
+}
+
+.navbar-brand {
+    color: whitesmoke !important;
+}
+
+.shelters-dogs {
+    text-align: center;
+}
+
+.text-red {
+    color: red;
+}
+
+#all-dogs-link {
+    color: #63A375;
+    margin: 0 auto;
+}
+
+.dropdown-item {
+    font-weight: 600 !important;
+    font-size: 1.7rem !important;
+}
