@@ -1,16 +1,9 @@
-{% extends 'base.html' %}
+{% extends '../base.html' %}
 {% load static %}
 
-
+<h1>New Best Friend</h1>
 
 {% block content %}
-
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">New Best Friend</h1>
-      <h3 class="lead">The place to find the right dog for you</h3>
-    </div>
-</div>
 
 <div class="pa4-l">
     <form class="bg-light-red mw7 center pa4 br2-ns ba b--black-10" action="{% url 'search_results' %}" method="GET">
@@ -25,7 +18,6 @@
     </form>
 </div>
 
-<h2 class="featured">Featured Dogs</h2>
 
 <div class="container-fluid" id="dog-card-container">
     <div class="row row-cols-1 row-cols-md-4">
@@ -48,5 +40,6 @@
         {% endfor %}
     </div>
 </div>
+
 
 {% endblock %}

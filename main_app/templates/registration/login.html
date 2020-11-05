@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="register-header">
+    <h1>Log In</h1>
+    <hr>
+</div>
+
+<div id="loginform">
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-primary" value="login">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+</div>
+
+{% endblock %}
