@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import ProviderRegisterForm, RegUserRegisterForm, Dog_Form, EditProviderForm
 from django.views.generic import ListView
 from django.db.models import Q
+from django.contrib.auth import login, authenticate
 # Create your views here.
 
 
@@ -81,20 +82,24 @@ def edit_provider(request, provider_id):
 
 def edit_provider_form(request, provider_id):
     provider = Provider.objects.get(id=provider_id)
-    edit_form = EditProviderForm(initial={
-        'shelterName': provider.shelterName,
-        'location': provider.location,
-        'description': provider.description,
-        'phone': provider.phone,
-        'website': provider.website,
-        'image': provider.image,
-        'adoptionProcess': provider.adoptionProcess,
-    })
-    context = {
-        "provider": provider,
-        "edit_form": edit_form,
-    }
-    return render(request, "profile/profile_editform.html", context)
+    if (provider.id == request.user.provider.id):
+        edit_form = EditProviderForm(initial={
+            'shelterName': provider.shelterName,
+            'location': provider.location,
+            'description': provider.description,
+            'phone': provider.phone,
+            'website': provider.website,
+            'image': provider.image,
+            'adoptionProcess': provider.adoptionProcess,
+        })
+        context = {
+            "provider": provider,
+            "edit_form": edit_form,
+        }
+        return render(request, "profile/profile_editform.html", context)
+    elif (request.user.is_regUser):
+        return redirect("login")
+
 
 
 
@@ -118,6 +123,7 @@ def regUser_registration(request):
     return render(request, 'registration/register_regUser.html',  context)
 
 def register_provider(request):
+    error_message = ''
     if request.method == 'POST':
         form = ProviderRegisterForm(request.POST)
         if form.is_valid():
@@ -131,14 +137,16 @@ def register_provider(request):
             user.provider.image = form.cleaned_data.get('image')
             user.provider.adoptionProcess = form.cleaned_data.get('adoptionProcess')
             user.save()
+            login(request, user)
             return redirect("home") 
         else:
-            form = ProviderRegisterForm()
-
-        return render(request, 'home', {'form': form})
-
+            error_message = 'Please try again and make sure your passwords are the same and email is valid'
+    form = ProviderRegisterForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'registration/register_provider.html', context)
 
 def register_regUser(request):
+    error_message = ''
     if request.method == 'POST':
         form = RegUserRegisterForm(request.POST)
         if form.is_valid():
@@ -146,11 +154,13 @@ def register_regUser(request):
             user.is_regUser = True
             user.reguser.image = form.cleaned_data.get('image')
             user.save()
+            login(request, user)
             return redirect("home") 
         else:
-            form = RegUserRegisterForm()
-
-        return render(request, 'home', {'form': form})
+            error_message = 'Please try again with matching passwords and a valid email'
+    form = RegUserRegisterForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'registration/register_regUser.html', context)
 
 
 def add_dog(request, provider_id):
@@ -176,28 +186,31 @@ def dog_form(request, provider_id):
     
 def edit_dog(request, dog_id):
     dog = Dog.objects.get(id=dog_id)
-
-    if request.method == 'POST':
-        edit_form = Dog_Form(request.POST, instance=dog)
-        if edit_form.is_valid():
-            edit_form.save()
-            return redirect('home')
+    if (dog.provider.id == request.user.provider.id):
+        if request.method == 'POST':
+            edit_form = Dog_Form(request.POST, instance=dog)
+            if edit_form.is_valid():
+                edit_form.save()
+                return redirect('home')
+        else:
+            edit_form = Dog_Form(initial={
+                'name': dog.name,
+                'location': dog.location,
+                'breed': dog.breed,
+                'age': dog.age,
+                'gender': dog.gender,
+                'neutured': dog.neutured,
+                'image': dog.image,
+                'story': dog.story,
+            })
+            context = {
+                'dog': dog,
+                'edit_form': edit_form
+            }
+            return render(request, 'dogs/edit.html', context)
     else:
-        edit_form = Dog_Form(initial={
-            'name': dog.name,
-            'location': dog.location,
-            'breed': dog.breed,
-            'breed': dog.breed,
-            'gender': dog.gender,
-            'neutured': dog.neutured,
-            'image': dog.image,
-            'story': dog.story,
-        })
-        context = {
-            'dog': dog,
-            'edit_form': edit_form
-        }
-        return render(request, 'dogs/edit.html', context)
+        return redirect('home')
+    
 
 def delete_dog(request, dog_id):
     Dog.objects.get(id=dog_id).delete()

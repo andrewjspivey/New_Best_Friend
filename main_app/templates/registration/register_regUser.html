@@ -2,6 +2,7 @@
 
 
 {% block content %}
+{% if error_message %}<p class="text-red">{{ error_message }}</p>{% endif %}
 
 <div>
     <form action="{% url 'register_regUser' %}" method="POST">

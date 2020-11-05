@@ -36,12 +36,11 @@ class ProviderRegisterForm(UserCreationForm):
         self.fields['password2'].widget.attrs['class'] = 'form-control'
 
 class RegUserRegisterForm(UserCreationForm):
-    image = forms.CharField(max_length=200)
 
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username',
-                'email', 'password1', 'password2', 'image']
+                'email', 'password1', 'password2']
 
     def save(self, commit=True):
         user = super(RegUserRegisterForm, self).save(commit=False)
@@ -61,14 +60,14 @@ class Dog_Form(ModelForm):
 class EditProviderForm(ModelForm):
     shelterName = forms.CharField(max_length=75)
     location = forms.CharField(max_length=75)
-    description = forms.CharField(max_length=500)
     phone = forms.CharField(max_length=15)
     website = forms.CharField(max_length=100)
     image = forms.CharField(max_length=200)
-    adoptionProcess = forms.CharField(max_length=500)
+    description = forms.Textarea()
+    adoptionProcess = forms.Textarea()
 
     class Meta:
         model = Provider
         fields = ['shelterName', 'location', 
-        'description', 'phone', 'website', 'image', 'adoptionProcess']
+        'phone', 'website', 'image', 'description', 'adoptionProcess']
 

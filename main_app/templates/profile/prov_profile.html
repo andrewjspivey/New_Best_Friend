@@ -1,7 +1,6 @@
 {% extends '../base.html' %}
 
 
-<h1>New Best Friend</h1>
 
 <h3>{{ provider.name }}</h3>
 
@@ -32,6 +31,12 @@
                         <th scope="row"><i class="fas fa-envelope-square"></i></th>
                         <td>{{provider.user.email}}</td>
                       </tr>
+                      {% if provider.id == request.user.provider.id %}
+                      <tr>
+                        <th scope="row"></th>
+                        <td><a id="nbf-button" href="{% url 'edit_provider_form' provider.id %}" type="button" class="btn btn-primary">Edit Shelter Info</a></td>
+                      </tr>
+                        {% endif %}
                     </tbody>
                   </table>
             </div>
@@ -44,7 +49,6 @@
 <hr>
 
 
-
     <div id="shelter-info">
         <h3>About {{ provider.shelterName }}</h3>
         {{provider.description}}
@@ -52,8 +56,14 @@
         <h3>Adoption Process</h3>
         {{provider.adoptionProcess}}
     </div>
+<hr>
 
+<div class="shelters-dogs">
     <h2 id="shelters-dogs">{{ provider.shelterName }}'s Dogs</h2>
+    {% if provider.id == request.user.provider.id %}
+    <a id="nbf-button2"href="{% url 'dog_form' provider.id%}" type="button" class="btn btn-primary">Add a Dog</a>
+    {% endif %}
+</div>
 
     <div class="container-fluid" id="dog-card-container">
         <div class="row row-cols-1 row-cols-md-4">
@@ -72,6 +82,9 @@
                                     <li>{{ dog.location }}</li>
                                 </ul>
                         </div>
+                        {% if dog.provider.id == request.user.provider.id %}
+                        <a href="{% url 'edit_dog' dog.id %}">edit</a>
+                        {% endif %}
                     </div>
                 </div>
             {% endif %}

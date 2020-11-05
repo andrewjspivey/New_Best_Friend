@@ -35,9 +35,14 @@ body {
 
 .jumbotron .container .lead {
     font-size: 2em;
+    margin-left: 2rem;
+    color: whitesmoke;
+    padding-left: 0.2rem;
 }
 .jumbotron .container .display-4 {
     font-size: 4.5em;
+    margin-left: 2rem;
+    color: whitesmoke;
 }
 
 #searchbar {
@@ -45,16 +50,10 @@ body {
 }
 
 .jumbotron .container {
+    position: relative !important;
     margin-top: 15px;
+    padding-left: 1rem !important;
 }
-
-.jumbotron .container .display-4 {
-    color: whitesmoke;
-} 
-
-.jumbotron .container .lead {
-    color: whitesmoke;
-} 
 
 
 .collapse:not(.show) {
@@ -71,6 +70,22 @@ body {
     align-content: center;
     text-align: center;
     margin: auto 0;
+}
+
+#loginform {
+    display: block;
+    text-align: center;
+}
+
+#loginform form {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+#loginform form p {
+    display: table-caption;
 }
 
 .card-img-top {
@@ -136,6 +151,7 @@ body {
     margin-top: 3em;
     background-color: rgb(212, 209, 209);
     border-radius: 10px;
+    border: 10px solid #63A375;
     font-family: 'Itim', cursive;
     padding-bottom: 2rem;
 }
@@ -224,6 +240,7 @@ h2.show-name {
 #shelter-image {
     max-width: 90% !important;
     min-height: 90% !important;
+    margin-top: 1rem;
 }
 
 .prov-grid {
@@ -258,3 +275,24 @@ h2.show-name {
     font-size: 1.5rem !important;
 }
 
+#nbf-button {
+    background-color: #63A375 !important;
+    border-color: whitesmoke !important;
+}
+#nbf-button2 {
+    background-color: #63A375 !important;
+    border-color: whitesmoke !important;
+    margin-bottom: 1rem !important;
+}
+
+.navbar-brand {
+    color: whitesmoke !important;
+}
+
+.shelters-dogs {
+    text-align: center;
+}
+
+.text-red {
+    color: red;
+}

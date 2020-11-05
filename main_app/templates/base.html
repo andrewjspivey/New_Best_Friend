@@ -52,6 +52,15 @@
             </ul>
             <ul class="navbar-nav login">
                 {% if user.is_authenticated %}
+                    {% if user.is_provider %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'prov_profile' user.provider.id %}">{{ user.provider.shelterName }}</a>
+                </li>
+                    {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link">Hello, {{ user.username }}</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                 </li>
