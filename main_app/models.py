@@ -19,11 +19,11 @@ class Provider(models.Model):
     user.is_provider = True
     shelterName = models.CharField(max_length=75)
     location = models.CharField(max_length=75)
-    description = models.TextField(max_length=500, null=True)
+    description = models.TextField(max_length=1500, null=True)
     phone = models.CharField(max_length=15, null=True)
     website = models.CharField(max_length=100, null=True)
-    image = models.CharField(max_length=200, null=True)
-    adoptionProcess = models.TextField(max_length=500, null=True)
+    image = models.CharField(max_length=250, null=True)
+    adoptionProcess = models.TextField(max_length=1500, null=True)
 
     def __str__(self):
         return self.shelterName
@@ -69,8 +69,8 @@ class Dog(models.Model):
     )
     gender = models.CharField(max_length=1, choices=DOG_GENDER, null=True)
     neutured = models.CharField(max_length=1, choices=IS_NEUTURED, null=True)
-    image = models.CharField(max_length=200, default="photo.jpg")
-    story = models.TextField(max_length=700, default="story")
+    image = models.CharField(max_length=250, default="photo.jpg")
+    story = models.TextField(max_length=1000, default="story")
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
 
 

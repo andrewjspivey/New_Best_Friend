@@ -306,3 +306,8 @@ h2.show-name {
 #all-dogs-link {
     color: #63A375
 }
+
+.dropdown-item {
+    font-weight: 600 !important;
+    font-size: 1.7rem !important;
+}

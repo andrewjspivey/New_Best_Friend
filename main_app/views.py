@@ -41,6 +41,13 @@ def dogs_index(request):
 
     return render(request, "dogs/index.html", context)
 
+def shelter_index(request):
+    providers = Provider.objects.all()
+    context = {
+        "providers": providers,
+    }
+    return render(request, "shelter/index.html", context)
+
 
 def dog_show(request, dog_id):
     dog = Dog.objects.get(id=dog_id)
