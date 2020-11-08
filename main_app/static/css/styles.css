@@ -312,3 +312,8 @@ h2.show-name {
     font-weight: 600 !important;
     font-size: 1.7rem !important;
 }
+
+#more-dogs-link {
+    padding-top: 5rem !important;
+    padding-left: 3rem !important;
+}
