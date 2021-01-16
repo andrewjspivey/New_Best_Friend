@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
-from .models import Dog, Provider, User, RegUser
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ProviderRegisterForm, RegUserRegisterForm, Dog_Form, EditProviderForm
-from django.views.generic import ListView
 from django.db.models import Q
 from django.contrib.auth import login, authenticate
-# Create your views here.
+from django.views.generic import ListView
+
+from .models import Dog, Provider, User, RegUser
+from .forms import ProviderRegisterForm, RegUserRegisterForm, Dog_Form, EditProviderForm
+from main_app.services import get_dogs
+import petpy
+import requests
+
 
 
 def home(request):
@@ -32,10 +36,9 @@ class SearchResults(ListView):
 
 
 def dogs_index(request):
-    dogs = Dog.objects.all()
     signup_modal = RegUserRegisterForm()
     context = {
-        "dogs": dogs,
+        "dogs": get_dogs(),
         "signup_modal": signup_modal,
     }
 
