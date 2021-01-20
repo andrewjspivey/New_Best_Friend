@@ -1,6 +1,7 @@
-from main_app.views import prov_profile, dog_form, add_dog, SearchResults
+from main_app.views import dog_form, add_dog, SearchResults, pf_dog_show
 from django.urls import path, include
 from . import views
+
 
 urlpatterns = [
     path('search/', SearchResults.as_view(), name='search_results'),
@@ -13,6 +14,7 @@ urlpatterns = [
     path('shelters/', views.shelter_index, name='shelter_index'),
     path('dogs/', views.dogs_index, name='dogs'),
     path('dogs/<int:dog_id>/', views.dog_show, name='dog_show'),
+    path('pfdogs/<int:dog_id>/', views.pf_dog_show, name='pf_dog_show'),
     path('dogs/<int:dog_id>/edit', views.edit_dog, name='edit_dog'),
     path('dogs/<int:dog_id>/delete', views.delete_dog, name='delete_dog'),
     path('registration/', views.registration_type, name='registration'),

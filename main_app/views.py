@@ -10,8 +10,12 @@ from .forms import ProviderRegisterForm, RegUserRegisterForm, Dog_Form, EditProv
 from main_app.services import get_dogs
 import petpy
 import requests
+import dotenv
+from NewBestFriend_project.settings import API_KEY, SECRET
+import environ
 
 
+pf = petpy.Petfinder(key=API_KEY, secret=SECRET)
 
 def home(request):
     signup_modal = RegUserRegisterForm()
@@ -62,6 +66,17 @@ def dog_show(request, dog_id):
         "signup_modal": signup_modal,
     }
     return render(request, "dogs/show.html", context)
+
+
+def pf_dog_show(request, dog_id):
+    dog = pf.animals(animal_id=dog_id)
+    signup_modal = RegUserRegisterForm()
+    context = {
+        "dog": dog,
+        "signup_modal": signup_modal,
+    }
+    print(dog)
+    return render(request, "dogs/pf_show.html", context)
 
 
 def prov_profile(request, provider_id):
