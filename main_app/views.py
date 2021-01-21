@@ -75,7 +75,7 @@ def pf_dog_show(request, dog_id):
         "dog": dog,
         "signup_modal": signup_modal,
     }
-    print(dog)
+    print(dog, flush=True)
     return render(request, "dogs/pf_show.html", context)
 
 

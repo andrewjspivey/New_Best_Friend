@@ -141,7 +141,6 @@ body {
     min-width: 25vw;
     max-width: 34vw;
     min-height: 60vh;
-    max-height: 65vh;
     border-radius: 10px;
 }
 
@@ -165,14 +164,29 @@ h2.show-name {
     margin-bottom: 0% !important;
 }
 
+.show-header-info {
+    margin-bottom: 0% !important;
+    margin-left: 2.8em;
+    margin-right: 2.8em;
+    padding-top: 0.7em;
+}
+
 .dog-info .info-list {
     list-style-type: none;
     margin-left: 5%;
     margin-right: 5%;
 }
 
+.dog-info .info-list .lh-title {
+    line-height: 2 !important;
+}
+
 .modal.fade .modal-content .modal-footer .btn.btn-primary {
     background-color: #63A375 !important;
+}
+
+.pa4 {
+    padding-top: 0.3rem !important;
 }
 
 .search-header {
@@ -230,7 +244,7 @@ h2.show-name {
 }
 
 .f6 {
-    font-size: 1.1rem !important;
+    font-size: 1.3rem !important;
 }
 
 #provider-title h2{

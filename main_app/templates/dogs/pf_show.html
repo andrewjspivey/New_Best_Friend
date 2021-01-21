@@ -11,19 +11,27 @@
 </div>
 
 <div class="dog-info">
-    <h2 class="show-name">About {{ dog.animals.name }}</h2> 
+    <h2 class="show-name">{{ dog.animals.name }}</h2> 
+    <h4 class="show-header-info">{{ dog.animals.breeds.primary }} - {{ dog.animals.contact.address.city }} , {{dog.animals.contact.address.state}} </h4>
     <div class="info-list">
         <dl class="lh-title pa4 mt0">
-            <dt class="f6 b">Location</dt>
-            <dd class="ml0">{{ dog.animals.contact.address.city }} , {{dog.animals.contact.address.state}}</dd>
-            <dt class="f6 b mt2">Breed</dt>
-            <dd class="ml0"><li>{{ dog.animals.breeds.primary }}</li></dd>
-            <dt class="f6 b mt2">Age</dt>
-            <dd class="ml0"><li>{{ dog.animals.age }}</li></dd>
-            <dt class="f6 b mt2">Gender</dt>
-            <dd class="ml0"><li>{{ dog.animals.gender }}</li></dd>
+            <dt class="f6 b mt2">{{ dog.animals.age }}  |  {{ dog.animals.gender }}  |  {{ dog.animals.size }}</dt> 
+            {% if dog.animals.attributes %}
+            <dt class="f6 b mt2">Health</dt>
+            {% for key, value in dog.animals.attributes.items %}
+            {% if value is True %}
+            <dd class="ml0"><li>{{ key }}: Yes</li></dd>
+            {% else %}
+            <dd class="ml0"><li>{{ key }}: No</li></dd>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
             <dt class="f6 b mt2">{{ dog.animals.name }}'s Story</dt>
             <dd class="ml0"><li>{{ dog.animals.description }}</li></dd>
+            <dt class="f6 b mt2">Contact Info</dt>
+            {% if dog.animals.contact.phone %}
+            <dd class="ml0"><li>{{ dog.animals.contact.phone }} | {{ dog.animals.contact.email }}</li></dd>
+            {% endif %}
         </dl>
     </div>
     
