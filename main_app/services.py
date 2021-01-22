@@ -21,3 +21,14 @@ def get_dogs():
     ## animal_data = pf.animals(animal_names=animal_names)
     ##animals = pf.animals(results_per_page=15, pages=1, return_df=True)
     return all_dogs
+
+
+def get_orginizations():
+    orgs = pf.organizations(location="San Francisco, CA")
+
+    all_orgs = []
+
+    for i in orgs['organizations'][0:20]:
+        all_orgs.append(i)
+
+    return all_orgs

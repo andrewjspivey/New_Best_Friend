@@ -45,18 +45,11 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Shelters</a>
                     <div class="dropdown-menu">
                       <a class="dropdown-item" href="{% url 'orgs_index' %}">See Shelters</a>
-                      <a class="dropdown-item" href="{% url 'prov_registration' %}">Sign up Shelter</a>
                     </div>
                   </li>
             </ul>
             <ul class="navbar-nav login">
                 {% if user.is_authenticated %}
-                    {% if user.is_provider %}
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'prov_profile' user.provider.id %}">{{ user.provider.shelterName }}</a>
-                </li>
-                    {% endif %}
                 <li class="nav-item">
                     <a class="nav-link">Hello, {{ user.username }}</a>
                 </li>
@@ -91,7 +84,6 @@
         </div>
         <div class="modal-footer" style="justify-content: center;">
             <a type="button" class="btn btn-primary" id="signup-link" data-dismiss="modal">Sign up</a>
-            <a href="{% url 'prov_registration' %}" type="button" class="btn btn-primary">Sign up Shelter</a>
         </div>
       </div>
     </div>

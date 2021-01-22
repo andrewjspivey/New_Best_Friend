@@ -18,6 +18,10 @@ body {
     color: whitesmoke;
 }
 
+#org_links {
+    color: blue;
+}
+
 .jumbotron {
     background-image: url("../images/jumbotron2.jpg");
     -webkit-background-size: 100% 100%;

@@ -7,7 +7,7 @@ from django.views.generic import ListView
 
 from .models import Dog, Provider, User, RegUser
 from .forms import ProviderRegisterForm, RegUserRegisterForm, Dog_Form, EditProviderForm
-from main_app.services import get_dogs
+from main_app.services import get_dogs, get_orginizations
 import petpy
 import requests
 import dotenv
@@ -48,13 +48,6 @@ def dogs_index(request):
 
     return render(request, "dogs/index.html", context)
 
-def shelter_index(request):
-    providers = Provider.objects.all()
-    context = {
-        "providers": providers,
-    }
-    return render(request, "shelter/index.html", context)
-
 
 def dog_show(request, dog_id):
     dog = Dog.objects.get(id=dog_id)
@@ -77,6 +70,20 @@ def pf_dog_show(request, dog_id):
     }
     print(dog, flush=True)
     return render(request, "dogs/pf_show.html", context)
+
+def shelter_index(request):
+    providers = Provider.objects.all()
+    context = {
+        "providers": providers,
+    }
+    return render(request, "shelter/index.html", context)
+
+
+def orgs_index(request):
+    context = {
+        "orgs": get_orginizations(),
+    }
+    return render(request, "shelter/pf_orgs.html", context)
 
 
 def prov_profile(request, provider_id):
