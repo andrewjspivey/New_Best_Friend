@@ -16,7 +16,7 @@ def get_dogs():
 
     all_dogs = []
 
-    for i in dogs['animals'][0:50]:
+    for i in dogs['animals'][0:60]:
         all_dogs.append(i)
     ## animal_data = pf.animals(animal_names=animal_names)
     ##animals = pf.animals(results_per_page=15, pages=1, return_df=True)

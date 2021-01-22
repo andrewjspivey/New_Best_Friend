@@ -12,7 +12,9 @@
             {% if org.photos %}
             <div class="col mb-4">
                 <div class="card">
-                        <img src="{{ org.photos.0.medium }}" class="card-img-top" alt="">
+                        <a href="{% url 'orgs_show' org.id %}">
+                            <img src="{{ org.photos.0.medium }}" class="card-img-top" alt="">
+                        </a>
                     <div class="card-body">
                             <h4>{{ org.name }}</h4>
                             <ul>

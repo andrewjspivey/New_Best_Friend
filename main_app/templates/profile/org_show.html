@@ -1,0 +1,81 @@
+{% extends '../pf_base.html' %}
+
+
+
+
+{% block content %}
+
+<h3>{{ org.organizationss.name }}</h3>
+
+<div class="prov-grid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <img id="shelter-image" src="{{ org.organizations.photos.0.medium }}" alt="photo.jpg">
+            </div>
+            <div class="col-5" id="provider-title">
+                <h2>{{ org.organizations.name }}</h2>
+                <h3>{{ org.organizations.address.city }}, {{ org.organizations.address.state }}</h3>
+            </div>
+            <div class="col-4" id="contact-table">
+                <table class="table table-borderless" id="shelter-contact">
+                    <tbody>
+                      <tr>
+                        <th scope="row"><i class="fas fa-phone"></i></th>
+                        <td>{{org.organizations.phone}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><i class="fas fa-link"></i></th>
+                        <td>{{ org.organizations.website }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><i class="fas fa-envelope-square"></i></th>
+                        <td>{{ org.organizations.email}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<hr>
+
+
+    <div id="shelter-info">
+        <h3>About {{ org.organizations.name }}</h3>
+        {{org.organizations.mission_statement}}
+        <hr>
+        <h3>Adoption Process</h3>
+        {{org.organizations.adoption.policy}}
+    </div>
+<hr>
+
+<div class="shelters-dogs">
+    <h2 id="shelters-dogs">{{ org.organizations.name }}'s Dogs</h2>
+</div>
+
+    <div class="container-fluid" id="dog-card-container">
+        <div class="row row-cols-1 row-cols-md-4">
+            {% for dog in dogs.animals %}
+                <div class="col mb-4">
+                    <div class="card">
+                            <img src="{{ dog.photos.0.medium }}" class="card-img-top" alt="image.jpg">
+                        
+                        <div class="card-body">
+                                <h4>{{ dog.name }}</h4>
+                                <ul>
+                                    <li>{{ dog.breeds.primary }}</li>
+                                    <li> {{ dog.age }}</li>
+                            
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -68,7 +68,6 @@ def pf_dog_show(request, dog_id):
         "dog": dog,
         "signup_modal": signup_modal,
     }
-    print(dog, flush=True)
     return render(request, "dogs/pf_show.html", context)
 
 def shelter_index(request):
@@ -84,6 +83,16 @@ def orgs_index(request):
         "orgs": get_orginizations(),
     }
     return render(request, "shelter/pf_orgs.html", context)
+
+
+def orgs_show(request, org_id):
+    org = pf.organizations(organization_id=org_id,)
+    dogs = pf.animals(organization_id=org_id, animal_type="dog")
+    context = {
+        'org': org,
+        'dogs': dogs,
+    }
+    return render(request, 'profile/org_show.html', context)
 
 
 def prov_profile(request, provider_id):
