@@ -62,8 +62,9 @@
             {% for dog in dogs.animals %}
                 <div class="col mb-4">
                     <div class="card">
+                        <a href="{% url 'pf_dog_show' dog.id %}">
                             <img src="{{ dog.photos.0.medium }}" class="card-img-top" alt="image.jpg">
-                        
+                        </a>
                         <div class="card-body">
                                 <h4>{{ dog.name }}</h4>
                                 <ul>

@@ -16,6 +16,8 @@
     <div class="info-list">
         <dl class="lh-title pa4 mt0">
             <dt class="f6 b mt2">{{ dog.animals.age }}  |  {{ dog.animals.gender }}  |  {{ dog.animals.size }}</dt> 
+            <dt class="f6 b mt2">{{ dog.animals.name }}'s Story</dt>
+            <dd class="ml0"><li>{{ dog.animals.description }}</li></dd>
             {% if dog.animals.attributes %}
             <dt class="f6 b mt2">Health</dt>
             {% for key, value in dog.animals.attributes.items %}
@@ -26,12 +28,16 @@
             {% endif %}
             {% endfor %}
             {% endif %}
-            <dt class="f6 b mt2">{{ dog.animals.name }}'s Story</dt>
-            <dd class="ml0"><li>{{ dog.animals.description }}</li></dd>
             <dt class="f6 b mt2">Contact Info</dt>
             {% if dog.animals.contact.phone %}
             <dd class="ml0"><li>{{ dog.animals.contact.phone }} | {{ dog.animals.contact.email }}</li></dd>
             {% endif %}
+            <dt class="f6 b mt2">Organization Profile</dt>
+            <a href="{% url 'orgs_show' dog.animals.organization_id %}">
+                <dd class="ml0"><li>Profile</li></dd>
+            </a>
+            
+            </div>
         </dl>
     </div>
     

@@ -60,6 +60,7 @@ def dog_show(request, dog_id):
     }
     return render(request, "dogs/show.html", context)
 
+## DONT FORGET TO INCLUDE SEARCH FOR PF DOGS!
 
 def pf_dog_show(request, dog_id):
     dog = pf.animals(animal_id=dog_id)
