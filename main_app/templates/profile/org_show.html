@@ -1,6 +1,6 @@
 {% extends '../pf_base.html' %}
 
-
+{% load static %}
 
 
 {% block content %}
@@ -11,7 +11,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-3">
+                {% if org.organizations.photos.0.medium %}
                 <img id="shelter-image" src="{{ org.organizations.photos.0.medium }}" alt="photo.jpg">
+                {% else %}
+                <img id="shelter-image" src="{% static 'images/paw_default.jpg' %}" alt="photo.jpg">
+                {% endif %}
             </div>
             <div class="col-5" id="provider-title">
                 <h2>{{ org.organizations.name }}</h2>
@@ -63,7 +67,11 @@
                 <div class="col mb-4">
                     <div class="card">
                         <a href="{% url 'pf_dog_show' dog.id %}">
+                            {% if dog.photos.0.medium %}
                             <img src="{{ dog.photos.0.medium }}" class="card-img-top" alt="image.jpg">
+                            {% else %}
+                            <img src="{% static 'images/paw_default.jpg' %}" class="card-img-top" alt="image.jpg">
+                            {% endif %}
                         </a>
                         <div class="card-body">
                                 <h4>{{ dog.name }}</h4>

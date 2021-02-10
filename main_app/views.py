@@ -30,23 +30,19 @@ def home(request):
 
 
 def search_results(request):
+
     query = request.GET.get('q')
     dogs = pf.animals(animal_type='dog',location=query)
+    
+    dogs_list = []
+    for dog in dogs['animals']:
+        dogs_list.append(dog)
 
-    if request.exception:
-        return redirect('search_results.html')
-
-    else:
-        dogs_list = []
-        for dog in dogs['animals']:
-            dogs_list.append(dog)
-
-        context = {
-            "dogs_list": dogs_list,
-        }
-        print(query)
-        return render(request, "search_results.html", context)
-
+    context = {
+        "dogs_list": dogs_list,
+    }
+    print(query)
+    return render(request, "search_results.html", context)
 
 
 

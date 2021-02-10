@@ -1,12 +1,16 @@
 {% extends "../base.html" %}
-
+{% load static %}
 
 {% block content %}
 
 <div class="show-container">
     <h1 class="show-title">{{ dog.animals.name }}</h1>
     <div id="image-container">
+        {% if dog.animals.photos.0.large %}
         <img class="dog-image" src="{{ dog.animals.photos.0.large }}" alt="image.jpg">
+        {% else %}
+        <img class="dog-image" src="{% static 'images/paw_default.jpg'%}" alt="image.jpg">
+        {% endif %}
     </div>
 </div>
 
