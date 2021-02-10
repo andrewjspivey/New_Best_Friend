@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Q
 from django.contrib.auth import login, authenticate
 from django.views.generic import ListView
+from django.http import JsonResponse
 
 from .models import Dog, Provider, User, RegUser
 from .forms import ProviderRegisterForm, RegUserRegisterForm, Dog_Form, EditProviderForm
@@ -26,17 +27,27 @@ def home(request):
     }
     return render(request, "home.html", context)
 
-class SearchResults(ListView):
-    model = Dog
-    template_name = 'search_results.html'
 
-    def get_queryset(self):
-        query = self.request.GET.get('q')
-        dog_list = Dog.objects.filter(
-            Q(location__icontains=query) | 
-            Q(provider__in=Provider.objects.filter(location__icontains=query))
-        )
-        return dog_list
+
+def search_results(request):
+    query = request.GET.get('q')
+    dogs = pf.animals(animal_type='dog',location=query)
+
+    if request.exception:
+        return redirect('search_results.html')
+
+    else:
+        dogs_list = []
+        for dog in dogs['animals']:
+            dogs_list.append(dog)
+
+        context = {
+            "dogs_list": dogs_list,
+        }
+        print(query)
+        return render(request, "search_results.html", context)
+
+
 
 
 def dogs_index(request):

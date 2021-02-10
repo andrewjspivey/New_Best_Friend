@@ -1,10 +1,10 @@
-from main_app.views import dog_form, add_dog, SearchResults, pf_dog_show
+from main_app.views import dog_form, add_dog, pf_dog_show
 from django.urls import path, include
 from . import views
 
 
 urlpatterns = [
-    path('search/', SearchResults.as_view(), name='search_results'),
+    path('search/', views.search_results, name='search_results'),
     path('', views.home, name='home'),
     path('pf_orgs/', views.orgs_index, name='orgs_index'),
     path('v2/organizations/<str:org_id>/', views.orgs_show, name='orgs_show'),

@@ -41,12 +41,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'dogs' %}">Dogs</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Shelters</a>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="{% url 'orgs_index' %}">See Shelters</a>
-                    </div>
-                  </li>
             </ul>
             <ul class="navbar-nav login">
                 {% if user.is_authenticated %}

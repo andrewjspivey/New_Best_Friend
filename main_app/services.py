@@ -6,8 +6,9 @@ import dotenv
 from NewBestFriend_project.settings import API_KEY, SECRET
 import environ
 
-pf = petpy.Petfinder(key=API_KEY, secret=SECRET)
 
+
+pf = petpy.Petfinder(key=API_KEY, secret=SECRET)
 
 def get_dogs():
     url = 'https://api.petfinder.com/v2/animals?type=dog&limit=50'
@@ -18,8 +19,7 @@ def get_dogs():
 
     for i in dogs['animals'][0:60]:
         all_dogs.append(i)
-    ## animal_data = pf.animals(animal_names=animal_names)
-    ##animals = pf.animals(results_per_page=15, pages=1, return_df=True)
+
     return all_dogs
 
 
@@ -32,3 +32,4 @@ def get_orginizations():
         all_orgs.append(i)
 
     return all_orgs
+
