@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.contrib.auth import login, authenticate
 from django.views.generic import ListView
 from django.http import JsonResponse
+from django.contrib import messages
 
 from .models import Dog, Provider, User, RegUser
 from .forms import ProviderRegisterForm, RegUserRegisterForm, Dog_Form, EditProviderForm
@@ -31,18 +32,23 @@ def home(request):
 
 def search_results(request):
 
-    query = request.GET.get('q')
-    dogs = pf.animals(animal_type='dog',location=query)
-    
-    dogs_list = []
-    for dog in dogs['animals']:
-        dogs_list.append(dog)
+    try:
+        query = request.GET.get('q')
+        dogs = pf.animals(animal_type='dog',location=query, distance=15)
+        dogs_list = []
+        for dog in dogs['animals']:
+            dogs_list.append(dog)
 
-    context = {
-        "dogs_list": dogs_list,
-    }
-    print(query)
-    return render(request, "search_results.html", context)
+        context = {
+            "dogs_list": dogs_list,
+        }
+        return render(request, "search_results.html", context)
+    except petpy.exceptions.PetfinderInvalidParameters:
+        messages.info(request, "You must search in this format: City, State(CA|NY) or postal code")
+        return redirect('dogs')
+
+
+
 
 
 

@@ -111,6 +111,11 @@
     </div>
   </div>
 
+  
+    {% include 'messages.html' %}
+
+  
+
         {% block content %}
 
         {% endblock %}
@@ -119,6 +124,11 @@
         $('#signup-link').on('click', function () {
             $('#reg-signup-modal').modal('show');
         });
+        setTimeout(function(){
+          if ($('#msg').length > 0){
+            $('#msg').remove();
+          }
+        }, 9000)
         </script>
 
 

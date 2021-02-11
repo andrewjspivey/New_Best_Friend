@@ -112,6 +112,11 @@
         $('#signup-link').on('click', function () {
             $('#reg-signup-modal').modal('show');
         });
+        setTimeout(function(){
+          if ($('#msg').length > 0){
+            $('#msg').remove();
+          }
+        }, 5000)
         </script>
 
 
