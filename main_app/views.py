@@ -21,10 +21,14 @@ pf = petpy.Petfinder(key=API_KEY, secret=SECRET)
 
 def home(request):
     signup_modal = RegUserRegisterForm()
-    dogs = Dog.objects.order_by('-id')[:7]
+
+    dogs = pf.animals(animal_type='dog', location="San Francisco, CA", results_per_page=7)
+    dogs_list = []
+    for dog in dogs['animals']:
+        dogs_list.append(dog)
     context = {
         "signup_modal": signup_modal,
-        "dogs": dogs,
+        "dogs_list": dogs_list,
     }
     return render(request, "home.html", context)
 
