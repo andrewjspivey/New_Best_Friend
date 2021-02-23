@@ -1,0 +1,1 @@
+web: gunicorn NewBestFriend_project.wsgi
