@@ -1,52 +1,69 @@
 from django.shortcuts import render, redirect
-from .models import Dog, Provider, User, RegUser
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ProviderRegisterForm, RegUserRegisterForm, Dog_Form, EditProviderForm
-from django.views.generic import ListView
 from django.db.models import Q
 from django.contrib.auth import login, authenticate
-# Create your views here.
+from django.views.generic import ListView
+from django.http import JsonResponse
+from django.contrib import messages
 
+from .models import Dog, Provider, User, RegUser
+from .forms import ProviderRegisterForm, RegUserRegisterForm, Dog_Form, EditProviderForm
+from main_app.services import get_dogs, get_orginizations
+import petpy
+import requests
+import dotenv
+from NewBestFriend_project.settings import API_KEY, SECRET
+import environ
+
+
+pf = petpy.Petfinder(key=API_KEY, secret=SECRET)
 
 def home(request):
     signup_modal = RegUserRegisterForm()
-    dogs = Dog.objects.order_by('-id')[:7]
+
+    dogs = pf.animals(animal_type='dog', location="San Francisco, CA", results_per_page=11)
+    dogs_list = []
+    for dog in dogs['animals']:
+        dogs_list.append(dog)
     context = {
         "signup_modal": signup_modal,
-        "dogs": dogs,
+        "dogs_list": dogs_list,
     }
     return render(request, "home.html", context)
 
-class SearchResults(ListView):
-    model = Dog
-    template_name = 'search_results.html'
 
-    def get_queryset(self):
-        query = self.request.GET.get('q')
-        dog_list = Dog.objects.filter(
-            Q(location__icontains=query) | 
-            Q(provider__in=Provider.objects.filter(location__icontains=query))
-        )
-        return dog_list
+
+def search_results(request):
+
+    try:
+        query = request.GET.get('q')
+        dogs = pf.animals(animal_type='dog',location=query, distance=15)
+        dogs_list = []
+        for dog in dogs['animals']:
+            dogs_list.append(dog)
+
+        context = {
+            "dogs_list": dogs_list,
+        }
+        return render(request, "search_results.html", context)
+    except petpy.exceptions.PetfinderInvalidParameters:
+        messages.info(request, "You must search in this format: City, State(CA|NY) or postal code")
+        return redirect('dogs')
+
+
+
+
 
 
 def dogs_index(request):
-    dogs = Dog.objects.all()
     signup_modal = RegUserRegisterForm()
     context = {
-        "dogs": dogs,
+        "dogs": get_dogs(),
         "signup_modal": signup_modal,
     }
 
     return render(request, "dogs/index.html", context)
-
-def shelter_index(request):
-    providers = Provider.objects.all()
-    context = {
-        "providers": providers,
-    }
-    return render(request, "shelter/index.html", context)
 
 
 def dog_show(request, dog_id):
@@ -59,6 +76,41 @@ def dog_show(request, dog_id):
         "signup_modal": signup_modal,
     }
     return render(request, "dogs/show.html", context)
+
+## DONT FORGET TO INCLUDE SEARCH FOR PF DOGS!
+
+def pf_dog_show(request, dog_id):
+    dog = pf.animals(animal_id=dog_id)
+    signup_modal = RegUserRegisterForm()
+    context = {
+        "dog": dog,
+        "signup_modal": signup_modal,
+    }
+    return render(request, "dogs/pf_show.html", context)
+
+def shelter_index(request):
+    providers = Provider.objects.all()
+    context = {
+        "providers": providers,
+    }
+    return render(request, "shelter/index.html", context)
+
+
+def orgs_index(request):
+    context = {
+        "orgs": get_orginizations(),
+    }
+    return render(request, "shelter/pf_orgs.html", context)
+
+
+def orgs_show(request, org_id):
+    org = pf.organizations(organization_id=org_id,)
+    dogs = pf.animals(organization_id=org_id, animal_type="dog")
+    context = {
+        'org': org,
+        'dogs': dogs,
+    }
+    return render(request, 'profile/org_show.html', context)
 
 
 def prov_profile(request, provider_id):

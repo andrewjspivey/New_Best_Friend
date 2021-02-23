@@ -1,0 +1,50 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="show-container">
+    <h1 class="show-title">{{ dog.animals.name }}</h1>
+    <div id="image-container">
+        {% if dog.animals.photos.0.large %}
+        <img class="dog-image" src="{{ dog.animals.photos.0.large }}" alt="image.jpg">
+        {% else %}
+        <img class="dog-image" src="{% static 'images/paw_default.jpg'%}" alt="image.jpg">
+        {% endif %}
+    </div>
+</div>
+
+<div class="dog-info">
+    <h2 class="show-name">{{ dog.animals.name }}</h2> 
+    <h4 class="show-header-info">{{ dog.animals.breeds.primary }} - {{ dog.animals.contact.address.city }} , {{dog.animals.contact.address.state}} </h4>
+    <div class="info-list">
+        <dl class="lh-title pa4 mt0">
+            <dt class="f6 b mt2">{{ dog.animals.age }}  |  {{ dog.animals.gender }}  |  {{ dog.animals.size }}</dt> 
+            <dt class="f6 b mt2">{{ dog.animals.name }}'s Story</dt>
+            <dd class="ml0"><li>{{ dog.animals.description }}</li></dd>
+            {% if dog.animals.attributes %}
+            <dt class="f6 b mt2">Health</dt>
+            {% for key, value in dog.animals.attributes.items %}
+            {% if value is True %}
+            <dd class="ml0"><li>{{ key }}: Yes</li></dd>
+            {% else %}
+            <dd class="ml0"><li>{{ key }}: No</li></dd>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <dt class="f6 b mt2">Contact Info</dt>
+            {% if dog.animals.contact.phone %}
+            <dd class="ml0"><li>{{ dog.animals.contact.phone }} | {{ dog.animals.contact.email }}</li></dd>
+            {% endif %}
+            <dt class="f6 b mt2">Organization Profile</dt>
+            <a href="{% url 'orgs_show' dog.animals.organization_id %}">
+                <dd class="ml0"><li>Profile</li></dd>
+            </a>
+            
+            </div>
+        </dl>
+    </div>
+    
+
+
+{% endblock %}

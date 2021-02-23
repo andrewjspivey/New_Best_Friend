@@ -44,12 +44,6 @@
             </ul>
             <ul class="navbar-nav login">
                 {% if user.is_authenticated %}
-                    {% if user.is_provider %}
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'prov_profile' user.provider.id %}">{{ user.provider.shelterName }}</a>
-                </li>
-                    {% endif %}
                 <li class="nav-item">
                     <a class="nav-link">Hello, {{ user.username }}</a>
                 </li>
@@ -84,7 +78,6 @@
         </div>
         <div class="modal-footer" style="justify-content: center;">
             <a type="button" class="btn btn-primary" id="signup-link" data-dismiss="modal">Sign up</a>
-            <a href="{% url 'prov_registration' %}" type="button" class="btn btn-primary">Sign up Shelter</a>
         </div>
       </div>
     </div>
@@ -111,11 +104,6 @@
     </div>
   </div>
 
-  
-    {% include 'messages.html' %}
-
-  
-
         {% block content %}
 
         {% endblock %}
@@ -128,7 +116,7 @@
           if ($('#msg').length > 0){
             $('#msg').remove();
           }
-        }, 9000)
+        }, 5000)
         </script>
 
 
