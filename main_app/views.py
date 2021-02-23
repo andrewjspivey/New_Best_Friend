@@ -39,7 +39,7 @@ def search_results(request):
 
     try:
         query = request.GET.get('q')
-        dogs = pf.animals(animal_type='dog',location=query, distance=15)
+        dogs = pf.animals(animal_type='dog',location=query, distance=20, results_per_page=40)
         dogs_list = []
         for dog in dogs['animals']:
             dogs_list.append(dog)

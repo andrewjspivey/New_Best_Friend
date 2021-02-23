@@ -36,9 +36,8 @@
             {% if dog.animals.contact.phone %}
             <dd class="ml0"><li>{{ dog.animals.contact.phone }} | {{ dog.animals.contact.email }}</li></dd>
             {% endif %}
-            <dt class="f6 b mt2">Organization Profile</dt>
             <a href="{% url 'orgs_show' dog.animals.organization_id %}">
-                <dd class="ml0"><li>Profile</li></dd>
+                <dd class="ml0" id="profile-link"><li>Organization Link</li></dd>
             </a>
             
             </div>

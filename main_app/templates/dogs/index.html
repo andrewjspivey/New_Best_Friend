@@ -22,12 +22,17 @@
 <div class="container-fluid" id="dog-card-container">
     <div class="row row-cols-1 row-cols-md-4">
         {% for dog in dogs %}
-            {% if dog.photos.0 %}
             <div class="col mb-4">
                 <div class="card">
-                    <a href="{% url 'pf_dog_show' dog.id %}"> 
-                        <img src="{{ dog.photos.0.medium }}" class="card-img-top" alt="image.jpg">
+                    {% if dog.photos.0.medium %}
+                    <a href="{% url 'pf_dog_show' dog.id %}">
+                        <img src="{{ dog.photos.0.medium }}" class="card-img-top" alt="{% static 'images/paw_default.jpg' %}">
                     </a>
+                    {% else %}
+                    <a href="{% url 'pf_dog_show' dog.id %}">
+                        <img src="{% static 'images/paw_default.jpg' %}" class="card-img-top" alt="{% static 'images/paw_default.jpg' %}">
+                    </a>
+                    {% endif %}
                     <div class="card-body">
                             <h4>{{ dog.name }}</h4>
                             <ul>
@@ -38,7 +43,6 @@
                     </div>
                 </div>
             </div>
-            {% endif %}
         {% endfor %}
     </div>
 </div>

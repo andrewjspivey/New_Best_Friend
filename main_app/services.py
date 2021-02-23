@@ -13,7 +13,7 @@ pf = petpy.Petfinder(key=API_KEY, secret=SECRET)
 def get_dogs():
     url = 'https://api.petfinder.com/v2/animals?type=dog&limit=50'
 
-    dogs = pf.animals(animal_type='dog', results_per_page=20, pages=2, location='San Francisco, CA')
+    dogs = pf.animals(animal_type='dog', results_per_page=25, pages=2, location='San Francisco, CA')
 
     all_dogs = []
 

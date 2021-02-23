@@ -331,6 +331,11 @@ h2.show-name {
     font-size: 1.7rem !important;
 }
 
+#profile-link {
+    font-size: 2rem;
+    color: #63A375 !important;
+}
+
 #more-dogs-link {
     padding-top: 5rem !important;
     padding-left: 3rem !important;
