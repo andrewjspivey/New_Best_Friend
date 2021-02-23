@@ -15,6 +15,7 @@ import requests
 import dotenv
 from NewBestFriend_project.settings import API_KEY, SECRET
 import environ
+import os
 
 
 pf = petpy.Petfinder(key=API_KEY, secret=SECRET)
