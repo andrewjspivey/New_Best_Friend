@@ -22,7 +22,7 @@ pf = petpy.Petfinder(key=API_KEY, secret=SECRET)
 def home(request):
     signup_modal = RegUserRegisterForm()
 
-    dogs = pf.animals(animal_type='dog', location="San Francisco, CA", results_per_page=7)
+    dogs = pf.animals(animal_type='dog', location="San Francisco, CA", results_per_page=11)
     dogs_list = []
     for dog in dogs['animals']:
         dogs_list.append(dog)
